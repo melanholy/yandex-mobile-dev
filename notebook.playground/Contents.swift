@@ -1,9 +1,9 @@
 import UIKit
 
 enum Importance: Int {
-    case low = 0
-    case common = 1
-    case high = 2
+    case low
+    case common
+    case high
 }
 
 struct Note {
@@ -27,11 +27,7 @@ struct Note {
         self.content = content
         self.color = color
         self.importance = importance
-        if let relevantTo = relevantTo {
-            self.relevantTo = relevantTo
-        } else {
-            self.relevantTo = Date().addingTimeInterval(Note.defaultRelevantInterval)
-        }
+        self.relevantTo = relevantTo ?? Date().addingTimeInterval(Note.defaultRelevantInterval)
     }
     
     func isRelevant() -> Bool {
@@ -110,7 +106,6 @@ class FileNotebook {
     private(set) var notes = [Note]()
     
     static var filePath: String? {
-        
         guard let dir = NSSearchPathForDirectoriesInDomains(
                             .documentDirectory,
                             .allDomainsMask,
@@ -123,10 +118,8 @@ class FileNotebook {
         return path
     }
     
-    func addNote(note: Note) -> Bool {
-        if notes.contains(where: { (existingNote) -> Bool in
-            return existingNote.uid == note.uid
-        }) {
+    func add(_ note: Note) -> Bool {
+        if notes.contains(where: { $0.uid == note.uid }) {
             return false
         }
         
@@ -136,9 +129,7 @@ class FileNotebook {
     }
     
     func removeNote(withUid uid: String) -> Bool {
-        guard let index = notes.index(where: { (note) -> Bool in
-            return note.uid == uid
-        }) else {
+        guard let index = notes.index(where: { $0.uid == uid }) else {
             return false
         }
         
@@ -152,16 +143,14 @@ class FileNotebook {
             return
         }
         
-        let jsonNotes = notes.map { (note) -> [String: Any] in
-            return note.json
-        }
+        let jsonNotes = notes.map { $0.json }
         
-        let data = try! JSONSerialization.data(withJSONObject: jsonNotes, options: [])
+        let data = try JSONSerialization.data(withJSONObject: jsonNotes, options: [])
         guard let jsonString = String(data: data, encoding: .utf8) else {
             return
         }
         
-        try! jsonString.write(toFile: filePath, atomically: false, encoding: .utf8)
+        try jsonString.write(toFile: filePath, atomically: false, encoding: .utf8)
     }
     
     func load() throws {
@@ -169,9 +158,9 @@ class FileNotebook {
             return
         }
         
-        let content = try! String(contentsOfFile: filePath)
+        let content = try String(contentsOfFile: filePath)
         guard let data = content.data(using: .utf8),
-              let jsonArray = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
+              let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
             return
         }
         
@@ -194,9 +183,9 @@ let note2 = Note(uid: "23432", title: "news", content: "bad times :(", importanc
 let note3 = Note(title: "oooo", content: "aaaa", importance: Importance.low, relevantTo: Date())
 
 let notebook1 = FileNotebook()
-notebook1.addNote(note: note1)
-notebook1.addNote(note: note2)
-notebook1.addNote(note: note3)
+notebook1.add(note1)
+notebook1.add(note2)
+notebook1.add(note3)
 try! notebook1.save()
 
 let notebook2 = FileNotebook()

@@ -9,9 +9,9 @@
 import UIKit
 
 enum Importance: Int {
-    case low = 0
-    case common = 1
-    case high = 2
+    case low
+    case common
+    case high
 }
 
 struct Note {
@@ -35,11 +35,7 @@ struct Note {
         self.content = content
         self.color = color
         self.importance = importance
-        if let relevantTo = relevantTo {
-            self.relevantTo = relevantTo
-        } else {
-            self.relevantTo = Date().addingTimeInterval(Note.defaultRelevantInterval)
-        }
+        self.relevantTo = relevantTo ?? Date().addingTimeInterval(Note.defaultRelevantInterval)
     }
     
     func isRelevant() -> Bool {

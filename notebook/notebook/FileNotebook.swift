@@ -26,10 +26,8 @@ class FileNotebook {
         return path
     }
     
-    func addNote(note: Note) -> Bool {
-        if notes.contains(where: { (existingNote) -> Bool in
-            return existingNote.uid == note.uid
-        }) {
+    func add(_ note: Note) -> Bool {
+        if notes.contains(where: { $0.uid == note.uid }) {
             return false
         }
         
@@ -39,9 +37,7 @@ class FileNotebook {
     }
     
     func removeNote(withUid uid: String) -> Bool {
-        guard let index = notes.index(where: { (note) -> Bool in
-            return note.uid == uid
-        }) else {
+        guard let index = notes.index(where: { $0.uid == uid }) else {
             return false
         }
         
@@ -55,16 +51,14 @@ class FileNotebook {
             return
         }
         
-        let jsonNotes = notes.map { (note) -> [String: Any] in
-            return note.json
-        }
+        let jsonNotes = notes.map { $0.json }
         
-        let data = try! JSONSerialization.data(withJSONObject: jsonNotes, options: [])
+        let data = try JSONSerialization.data(withJSONObject: jsonNotes, options: [])
         guard let jsonString = String(data: data, encoding: .utf8) else {
             return
         }
         
-        try! jsonString.write(toFile: filePath, atomically: false, encoding: .utf8)
+        try jsonString.write(toFile: filePath, atomically: false, encoding: .utf8)
     }
     
     func load() throws {
@@ -72,9 +66,9 @@ class FileNotebook {
             return
         }
         
-        let content = try! String(contentsOfFile: filePath)
+        let content = try String(contentsOfFile: filePath)
         guard let data = content.data(using: .utf8),
-            let jsonArray = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
+            let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
                 return
         }
         

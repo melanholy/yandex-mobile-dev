@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    
+        //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
+        //DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
+        
+        let fileLogger: DDFileLogger = DDFileLogger()
+        fileLogger.rollingFrequency = TimeInterval(60*60*24)
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+        
+        let notebookMem = FileNotebookBadMem()
+        for i in 1...1000 {
+            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
+            notebookMem.add(note)
+        }
+        notebookMem.removeNote(withUid: "1")
+        try! notebookMem.save()
+        try! notebookMem.load()
+        
+        let notebookCpu = FileNotebook()
+        for i in 1...10000 {
+            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
+            notebookCpu.add(note)
+        }
+        
+        try! notebookCpu.save()
+        try! notebookCpu.load()
+        
         return true
     }
 

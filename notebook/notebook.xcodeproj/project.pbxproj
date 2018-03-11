@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		1913FB1AAB0BEF408E686EF7 /* Pods_notebook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1670D92ED535413AE9B6D79C /* Pods_notebook.framework */; };
 		84C70BBE6E8AEB6D8EB35540 /* Pods_notebookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FF561E0FC1A0C3618DE177 /* Pods_notebookTests.framework */; };
+		CC09B6BA2054ECCE00D5139F /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC09B6B92054ECCE00D5139F /* LinkedListTests.swift */; };
+		CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */; };
+		CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A53052054501500B9D1F0 /* LinkedList.swift */; };
+		CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC383538205522F900C0639E /* FileNotebookBadCpu.swift */; };
 		CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBA82050362A001114BB /* AppDelegate.swift */; };
 		CE5BDBAB2050362A001114BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBAA2050362A001114BB /* ViewController.swift */; };
 		CE5BDBAE2050362A001114BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBAC2050362A001114BB /* Main.storyboard */; };
 		CE5BDBB02050362A001114BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBAF2050362A001114BB /* Assets.xcassets */; };
 		CE5BDBB32050362A001114BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBB12050362A001114BB /* LaunchScreen.storyboard */; };
-		CE5BDBBE2050362A001114BB /* notebookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBBD2050362A001114BB /* notebookTests.swift */; };
+		CE5BDBBE2050362A001114BB /* FileNotebookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBBD2050362A001114BB /* FileNotebookTests.swift */; };
 		CE5BDBC920503CBC001114BB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBC820503CBC001114BB /* Note.swift */; };
 		CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBCA20503D07001114BB /* FileNotebook.swift */; };
 /* End PBXBuildFile section */
@@ -33,8 +37,14 @@
 		12FF561E0FC1A0C3618DE177 /* Pods_notebookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notebookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1670D92ED535413AE9B6D79C /* Pods_notebook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notebook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		386050272A5CA810D2E8E4AE /* Pods-notebook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-notebook/Pods-notebook.debug.xcconfig"; sourceTree = "<group>"; };
+		3B3993D0812BA6BA63AAAEC0 /* Pods-notebook.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebook.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-notebook/Pods-notebook.testflight.xcconfig"; sourceTree = "<group>"; };
 		6AA50D76DA8E361F8883F0EA /* Pods-notebookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E3633ADB4CBF6C23EC2F056 /* Pods-notebookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3844CB334272EB011DED259 /* Pods-notebookTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.testflight.xcconfig"; sourceTree = "<group>"; };
+		CC09B6B92054ECCE00D5139F /* LinkedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListTests.swift; sourceTree = "<group>"; };
+		CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookBadMem.swift; sourceTree = "<group>"; };
+		CC1A53052054501500B9D1F0 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		CC383538205522F900C0639E /* FileNotebookBadCpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookBadCpu.swift; sourceTree = "<group>"; };
 		CE5BDBA52050362A001114BB /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5BDBA82050362A001114BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE5BDBAA2050362A001114BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +53,7 @@
 		CE5BDBB22050362A001114BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE5BDBB42050362A001114BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE5BDBB92050362A001114BB /* notebookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = notebookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE5BDBBD2050362A001114BB /* notebookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notebookTests.swift; sourceTree = "<group>"; };
+		CE5BDBBD2050362A001114BB /* FileNotebookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookTests.swift; sourceTree = "<group>"; };
 		CE5BDBBF2050362A001114BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE5BDBC820503CBC001114BB /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		CE5BDBCA20503D07001114BB /* FileNotebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebook.swift; sourceTree = "<group>"; };
@@ -77,6 +87,8 @@
 				D256ADA1061CAF7BC63B9C13 /* Pods-notebook.release.xcconfig */,
 				7E3633ADB4CBF6C23EC2F056 /* Pods-notebookTests.debug.xcconfig */,
 				6AA50D76DA8E361F8883F0EA /* Pods-notebookTests.release.xcconfig */,
+				3B3993D0812BA6BA63AAAEC0 /* Pods-notebook.testflight.xcconfig */,
+				B3844CB334272EB011DED259 /* Pods-notebookTests.testflight.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -88,6 +100,16 @@
 				12FF561E0FC1A0C3618DE177 /* Pods_notebookTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC3F534720554F0E0031D8C6 /* BadNotebooks */ = {
+			isa = PBXGroup;
+			children = (
+				CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */,
+				CC1A53052054501500B9D1F0 /* LinkedList.swift */,
+				CC383538205522F900C0639E /* FileNotebookBadCpu.swift */,
+			);
+			path = BadNotebooks;
 			sourceTree = "<group>";
 		};
 		CE5BDB9C2050362A001114BB = {
@@ -113,6 +135,7 @@
 		CE5BDBA72050362A001114BB /* notebook */ = {
 			isa = PBXGroup;
 			children = (
+				CC3F534720554F0E0031D8C6 /* BadNotebooks */,
 				CE5BDBA82050362A001114BB /* AppDelegate.swift */,
 				CE5BDBAA2050362A001114BB /* ViewController.swift */,
 				CE5BDBAC2050362A001114BB /* Main.storyboard */,
@@ -128,8 +151,9 @@
 		CE5BDBBC2050362A001114BB /* notebookTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE5BDBBD2050362A001114BB /* notebookTests.swift */,
+				CE5BDBBD2050362A001114BB /* FileNotebookTests.swift */,
 				CE5BDBBF2050362A001114BB /* Info.plist */,
+				CC09B6B92054ECCE00D5139F /* LinkedListTests.swift */,
 			);
 			path = notebookTests;
 			sourceTree = "<group>";
@@ -345,9 +369,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */,
+				CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */,
 				CE5BDBAB2050362A001114BB /* ViewController.swift in Sources */,
 				CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */,
 				CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */,
+				CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */,
 				CE5BDBC920503CBC001114BB /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +383,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5BDBBE2050362A001114BB /* notebookTests.swift in Sources */,
+				CC09B6BA2054ECCE00D5139F /* LinkedListTests.swift in Sources */,
+				CE5BDBBE2050362A001114BB /* FileNotebookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,9 +477,9 @@
 		};
 		CC1A5301205442F000B9D1F0 /* TestFlight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 386050272A5CA810D2E8E4AE /* Pods-notebook.debug.xcconfig */;
+			baseConfigurationReference = 3B3993D0812BA6BA63AAAEC0 /* Pods-notebook.testflight.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestFlight;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebook/Info.plist;
@@ -465,15 +493,18 @@
 		};
 		CC1A5302205442F000B9D1F0 /* TestFlight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E3633ADB4CBF6C23EC2F056 /* Pods-notebookTests.debug.xcconfig */;
+			baseConfigurationReference = B3844CB334272EB011DED259 /* Pods-notebookTests.testflight.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.notebookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notebook.app/notebook";
@@ -625,11 +656,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.notebookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notebook.app/notebook";
@@ -638,14 +672,18 @@
 		};
 		CE5BDBC72050362A001114BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AA50D76DA8E361F8883F0EA /* Pods-notebookTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.notebookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notebook.app/notebook";

@@ -1,5 +1,5 @@
 //
-//  FileNotebook.swift
+//  FileNotebookBadCpu.swift
 //  notebook
 //
 //  Created by user on 07.03.18.
@@ -9,10 +9,10 @@
 import UIKit
 import CocoaLumberjack
 
-class FileNotebook {
+class FileNotebookBadCpu {
     private static let storeFilename = "notes.json"
     
-    private(set) var notes = [String: Note]()
+    private(set) var notes = [Note]()
     
     static var filePath: String? {
         guard let dir = NSSearchPathForDirectoriesInDomains(
@@ -26,35 +26,31 @@ class FileNotebook {
         
         let path = "\(dir)/\(storeFilename)"
         
-        DDLogInfo("Got filePath for FileNotebook: \(path)")
-        
         return path
     }
     
     @discardableResult
     func add(_ note: Note) -> Bool {
-        if notes[note.uid] != nil {
+        if notes.contains(where: { $0.uid == note.uid }) {
             DDLogInfo("Failed to add new note: note with uid=\(note.uid) already exists")
             
             return false
         }
         
-        notes[note.uid] = note
-        DDLogInfo("Added note with uid=\(note.uid)")
+        notes.append(note)
         
         return true
     }
     
     @discardableResult
     func removeNote(withUid uid: String) -> Bool {
-        if notes[uid] == nil {
+        guard let index = notes.index(where: { $0.uid == uid }) else {
             DDLogInfo("Failed to remove note: note with uid=\(uid) doesn't exists")
             
             return false
         }
         
-        notes.removeValue(forKey: uid)
-        DDLogInfo("Removed note with uid=\(uid)")
+        notes.remove(at: index)
         
         return true
     }
@@ -66,7 +62,7 @@ class FileNotebook {
             return
         }
         
-        let jsonNotes = notes.values.map { $0.json }
+        let jsonNotes = notes.map { $0.json }
         
         let data = try JSONSerialization.data(withJSONObject: jsonNotes, options: [])
         guard let jsonString = String(data: data, encoding: .utf8) else {
@@ -88,22 +84,28 @@ class FileNotebook {
         
         let content = try String(contentsOfFile: filePath)
         guard let data = content.data(using: .utf8),
-              let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
+            let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
                 DDLogError("Failed to decode notes from \(filePath)")
                 
                 return
         }
         
-        var loadedNotes = [String: Note]()
+        var loadedNotes = [Note]()
         for obj in jsonArray {
             let note = Note.parse(json: obj)
             if let note = note {
-                loadedNotes[note.uid] = note
+                loadedNotes.append(note)
             }
         }
         
-        notes = loadedNotes
+        for note in notes {
+            removeNote(withUid: note.uid)
+        }
+        for note in loadedNotes {
+            add(note)
+        }
         
         DDLogInfo("Loaded \(notes.count) notes")
     }
 }
+

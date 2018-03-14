@@ -14,6 +14,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func simulateBadCpu() {
+        let notebook = FileNotebook()
+        for i in 1...10000 {
+            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
+            notebook.add(note)
+        }
+        try! notebook.save()
+        
+        let notebookCpu = FileNotebookBadCpu()
+        try! notebookCpu.load()
+    }
+    
+    func simulateBadMem() {
+        let notebookMem = FileNotebookBadMem()
+        for i in 1...1000 {
+            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
+            notebookMem.add(note)
+        }
+        notebookMem.removeNote(withUid: "1")
+        try! notebookMem.save()
+        try! notebookMem.load()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
@@ -25,23 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
         
-        let notebookMem = FileNotebookBadMem()
-        for i in 1...1000 {
-            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
-            notebookMem.add(note)
-        }
-        notebookMem.removeNote(withUid: "1")
-        try! notebookMem.save()
-        try! notebookMem.load()
-        
-        let notebookCpu = FileNotebook()
-        for i in 1...10000 {
-            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
-            notebookCpu.add(note)
-        }
-        
-        try! notebookCpu.save()
-        try! notebookCpu.load()
+        simulateBadCpu()
         
         return true
     }

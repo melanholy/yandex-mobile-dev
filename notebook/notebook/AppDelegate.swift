@@ -9,6 +9,26 @@
 import UIKit
 import CocoaLumberjack
 
+struct RGBAFloat {
+    private var r: Float
+    private var g: Float
+    private var b: Float
+    private var a: Float
+    
+    init(red: Float, green: Float, blue: Float, alpha: Float) {
+        r = red
+        g = green
+        b = blue
+        a = alpha
+    }
+    
+    static let bitsPerComponent = 32
+    static let bitmapInfo = CGImageAlphaInfo.noneSkipLast.rawValue | CGBitmapInfo.floatComponents.rawValue
+    static func bytesPerRow(width: Int) -> Int{
+        return width * MemoryLayout<RGBAFloat>.size
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -40,14 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
-        //DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
+        DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
         
         let fileLogger: DDFileLogger = DDFileLogger()
         fileLogger.rollingFrequency = TimeInterval(60*60*24)
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
-        
-        simulateBadCpu()
         
         return true
     }

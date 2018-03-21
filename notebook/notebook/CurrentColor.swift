@@ -41,7 +41,6 @@ class CurrentColor: UIView {
         hexColor.layer.borderWidth = 1
         hexColor.layer.borderColor = UIColor.black.cgColor
         hexColor.backgroundColor = UIColor.white
-        hexColor.font
         
         setColor(selectedColor)
     }
@@ -60,13 +59,13 @@ class CurrentColor: UIView {
         }
         
         let redByte = Int((components[0] * 255).rounded())
-        let red = String(redByte, radix: 16)
+        let red = String(format: "%02X", redByte)
         let greenByte = Int((components[1] * 255).rounded())
-        let green = String(greenByte, radix: 16)
+        let green = String(format: "%02X", greenByte)
         let blueByte = Int((components[2] * 255).rounded())
-        let blue = String(blueByte, radix: 16)
+        let blue = String(format: "%02X", blueByte)
         
         hexColor.text = "#" + red + green + blue
-        contentWrapper.backgroundColor = UIColor.black
+        contentWrapper.backgroundColor = color
     }
 }

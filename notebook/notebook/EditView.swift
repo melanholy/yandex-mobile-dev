@@ -12,16 +12,16 @@ import CocoaLumberjack
 class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var destroyDateSwitch: UISwitch!
-    @IBOutlet weak var destroyDatePicker: UIDatePicker!
     @IBOutlet weak var noteNameTextField: UITextField!
     @IBOutlet weak var noteContentTextView: UITextView!
-    @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentTextHeight: NSLayoutConstraint!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var colorsStackView: UIStackView!
     @IBOutlet weak var colorPickerGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var datePickerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var colorButtons: [ColorButton]!
     @IBOutlet weak var colorPaletteButton: ColorPalette!
+    @IBOutlet weak var paletteButtonBorder: UIView!
     
     var keyboardHeight: CGFloat = -1
     let screenSize = UIScreen.main.bounds
@@ -43,15 +43,13 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
         self.addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        paletteButtonBorder.layer.borderColor = UIColor.black.cgColor
+        paletteButtonBorder.layer.borderWidth = 2
     }
     
     @IBAction func useDestroyDateDidChange() {
-        datePickerHeightConstraint.constant += destroyDateSwitch.isOn
-            ? datePickerHeight
-            : -datePickerHeight
-        bottomSpacingConstraint.constant += destroyDateSwitch.isOn
-            ? -datePickerHeight
-            : datePickerHeight
+        datePickerHeightConstraint.constant = destroyDateSwitch.isOn ? datePickerHeight : 0
     }
     
     @IBAction func colorDidTap(_ sender: ColorButton) {
@@ -64,12 +62,8 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func resizeContent() {
-        let oldHeight = noteContentTextView.frame.height
         noteContentTextView.sizeToFit()
-        let newHeight = noteContentTextView.frame.height
-        bottomSpacingConstraint.constant -= newHeight - oldHeight
-        mainScrollView.contentSize.height += newHeight - oldHeight
-
+        contentTextHeight.constant = noteContentTextView.frame.height
         setNeedsUpdateConstraints()
     }
     
@@ -88,9 +82,7 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    override func awakeFromNib() {
         noteNameTextField.delegate = self
         noteContentTextView.delegate = self
         
@@ -101,10 +93,7 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
             object: nil)
         
         resizeContent()
-        if !destroyDateSwitch.isOn {
-            datePickerHeightConstraint.constant -= datePickerHeight
-            bottomSpacingConstraint.constant -= datePickerHeight
-        }
+        datePickerHeightConstraint.constant = destroyDateSwitch.isOn ? datePickerHeight : 0
         colorButtons[0].select()
     }
 }

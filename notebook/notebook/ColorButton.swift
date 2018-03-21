@@ -41,13 +41,20 @@ class ColorButton: UIButton {
         
         if (selectedColor)
         {
+            let circleCenterX = Int(bounds.size.width - 15)
+            let circleCenterY = 15
             ctx.setStrokeColor(UIColor.black.cgColor)
             ctx.setLineWidth(2)
-            ctx.addArc(center: CGPoint(x: bounds.size.width - 10, y: 10),
-                       radius: 5,
+            ctx.addArc(center: CGPoint(x: circleCenterX, y: circleCenterY),
+                       radius: 10,
                        startAngle: 0,
                        endAngle: CGFloat.pi * 2,
                        clockwise: false)
+            ctx.strokePath()
+            
+            ctx.move(to: CGPoint(x: circleCenterX - 7, y: circleCenterY))
+            ctx.addLine(to: CGPoint(x: circleCenterX, y: circleCenterY + 7))
+            ctx.addLine(to: CGPoint(x: circleCenterX + 5, y: circleCenterY - 6))
             ctx.strokePath()
         }
     }

@@ -14,17 +14,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditView" customModule="notebook" customModuleProvider="target">
             <connections>
-                <outlet property="bottomSpacingConstraint" destination="XMH-hb-s4q" id="gjP-Wz-WAs"/>
-                <outlet property="colorPaletteButton" destination="2VJ-XB-pDQ" id="Aee-NU-Mc7"/>
+                <outlet property="colorPaletteButton" destination="Ftf-X6-R58" id="aDt-Op-n33"/>
                 <outlet property="colorPickerGestureRecognizer" destination="smQ-4k-hlh" id="7Fw-pg-osf"/>
                 <outlet property="colorsStackView" destination="sfK-OX-zDu" id="t5Z-6F-NuK"/>
+                <outlet property="contentTextHeight" destination="Kbo-0j-rYs" id="YYf-7Y-ECR"/>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="wPf-5Q-sch"/>
-                <outlet property="datePickerHeightConstraint" destination="9HR-BI-HRT" id="v3a-IH-zoq"/>
-                <outlet property="destroyDatePicker" destination="9HR-BI-HRT" id="vMh-k1-z93"/>
+                <outlet property="datePickerHeightConstraint" destination="nP6-yq-LeT" id="ToX-1L-W2r"/>
                 <outlet property="destroyDateSwitch" destination="d6S-Fq-lRg" id="PG2-p6-Dma"/>
                 <outlet property="mainScrollView" destination="Lp9-DM-aFA" id="VVp-s0-doy"/>
                 <outlet property="noteContentTextView" destination="xvk-Qy-bg3" id="c6G-DP-nvL"/>
                 <outlet property="noteNameTextField" destination="5UK-Ax-LPX" id="A7i-VH-SOH"/>
+                <outlet property="paletteButtonBorder" destination="wxn-qy-Zpg" id="S1u-37-eJT"/>
                 <outletCollection property="colorButtons" destination="OkJ-TC-zQF" collectionClass="NSMutableArray" id="bfw-6T-xQs"/>
                 <outletCollection property="colorButtons" destination="pTr-ll-F5g" collectionClass="NSMutableArray" id="MIA-51-dm4"/>
                 <outletCollection property="colorButtons" destination="Rq9-Wu-Zpp" collectionClass="NSMutableArray" id="2zR-BA-ehe"/>
@@ -37,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lp9-DM-aFA">
-                    <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter title for your note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-Ax-LPX">
                             <rect key="frame" x="16" y="16" width="288" height="40"/>
@@ -51,6 +51,9 @@
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvk-Qy-bg3">
                             <rect key="frame" x="16" y="72" width="288" height="115"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="115" id="Kbo-0j-rYs"/>
+                            </constraints>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -62,7 +65,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-Fq-lRg">
-                            <rect key="frame" x="155" y="198.5" width="51" height="31"/>
+                            <rect key="frame" x="155" y="198" width="51" height="31"/>
                             <connections>
                                 <action selector="useDestroyDateDidChange" destination="-1" eventType="valueChanged" id="8bP-6a-qZU"/>
                             </connections>
@@ -77,10 +80,10 @@
                             </date>
                         </datePicker>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sfK-OX-zDu">
-                            <rect key="frame" x="16" y="405.5" width="288" height="54.5"/>
+                            <rect key="frame" x="16" y="405.5" width="288" height="55"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkJ-TC-zQF" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="54.5" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                     <color key="backgroundColor" red="1" green="0.0059652226802521247" blue="0.037859833272396948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="OkJ-TC-zQF" secondAttribute="height" multiplier="1:1" id="lLL-IL-MuB"/>
@@ -90,7 +93,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTr-ll-F5g" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
-                                    <rect key="frame" x="58.5" y="0.0" width="55" height="54.5"/>
+                                    <rect key="frame" x="58.5" y="0.0" width="55" height="55"/>
                                     <color key="backgroundColor" red="0.049317540757329414" green="1" blue="0.093427175022876341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="pTr-ll-F5g" secondAttribute="height" multiplier="1:1" id="euo-qq-RQ1"/>
@@ -100,7 +103,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq9-Wu-Zpp" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
-                                    <rect key="frame" x="117" y="0.0" width="54.5" height="54.5"/>
+                                    <rect key="frame" x="116.5" y="0.0" width="55" height="55"/>
                                     <color key="backgroundColor" red="1" green="0.94511826143813438" blue="0.05429228799762198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Rq9-Wu-Zpp" secondAttribute="height" multiplier="1:1" id="fr7-1t-fR0"/>
@@ -110,7 +113,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFG-e0-uuV" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
-                                    <rect key="frame" x="175.5" y="0.0" width="54.5" height="54.5"/>
+                                    <rect key="frame" x="175" y="0.0" width="55" height="55"/>
                                     <color key="backgroundColor" red="0.024965583832521898" green="0.3306580187876248" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="vFG-e0-uuV" secondAttribute="height" multiplier="1:1" id="0FN-aQ-xo1"/>
@@ -119,22 +122,29 @@
                                         <action selector="colorDidTap:" destination="-1" eventType="touchUpInside" id="p9w-u6-ckU"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VJ-XB-pDQ" customClass="ColorPalette" customModule="notebook" customModuleProvider="target">
-                                    <rect key="frame" x="233.5" y="0.0" width="54.5" height="54.5"/>
-                                    <gestureRecognizers/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxn-qy-Zpg">
+                                    <rect key="frame" x="233" y="0.0" width="55" height="55"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ftf-X6-R58" customClass="ColorPalette" customModule="notebook" customModuleProvider="target">
+                                            <rect key="frame" x="2" y="2" width="51" height="51"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="2VJ-XB-pDQ" secondAttribute="height" multiplier="1:1" id="p4M-KR-19L"/>
+                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="centerX" secondItem="wxn-qy-Zpg" secondAttribute="centerX" id="PcC-0U-3EV"/>
+                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="centerY" secondItem="wxn-qy-Zpg" secondAttribute="centerY" id="Z1T-Sm-9r5"/>
+                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="width" secondItem="wxn-qy-Zpg" secondAttribute="width" constant="-4" id="p1s-PN-vjq"/>
+                                        <constraint firstAttribute="width" secondItem="wxn-qy-Zpg" secondAttribute="height" multiplier="1:1" id="xVf-P6-vkW"/>
+                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="height" secondItem="wxn-qy-Zpg" secondAttribute="height" constant="-4" id="zgn-Oa-eu4"/>
                                     </constraints>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="smQ-4k-hlh" appends="YES" id="QuA-w7-OcZ"/>
-                                    </connections>
-                                </button>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="pTr-ll-F5g" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="9XL-fu-fH3"/>
                                 <constraint firstItem="vFG-e0-uuV" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="BiF-Qg-NUZ"/>
                                 <constraint firstItem="Rq9-Wu-Zpp" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="UiY-HZ-r1u"/>
-                                <constraint firstItem="2VJ-XB-pDQ" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="YNX-7E-bso"/>
+                                <constraint firstItem="wxn-qy-Zpg" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="f0q-IW-jAQ"/>
                                 <constraint firstItem="OkJ-TC-zQF" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="lK5-8X-2vV"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
@@ -147,9 +157,10 @@
                         <constraint firstItem="xvk-Qy-bg3" firstAttribute="leading" secondItem="xIm-sh-9hf" secondAttribute="leading" id="Fnf-Gl-b4m"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="top" secondItem="Lp9-DM-aFA" secondAttribute="top" constant="16" id="GAM-ma-tLD"/>
                         <constraint firstItem="9HR-BI-HRT" firstAttribute="trailing" secondItem="5UK-Ax-LPX" secondAttribute="trailing" id="IgJ-uZ-vhy"/>
+                        <constraint firstAttribute="bottom" secondItem="sfK-OX-zDu" secondAttribute="bottom" constant="88" id="OX8-Dx-S6I"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="leading" secondItem="Lp9-DM-aFA" secondAttribute="leading" constant="16" id="SSq-7v-yyA"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="trailing" secondItem="xvk-Qy-bg3" secondAttribute="trailing" id="TV2-2P-M9a"/>
-                        <constraint firstAttribute="bottom" secondItem="sfK-OX-zDu" secondAttribute="bottom" id="XMH-hb-s4q"/>
+                        <constraint firstItem="sfK-OX-zDu" firstAttribute="width" secondItem="5UK-Ax-LPX" secondAttribute="width" id="Vqy-Te-aKO"/>
                         <constraint firstItem="xIm-sh-9hf" firstAttribute="top" secondItem="xvk-Qy-bg3" secondAttribute="bottom" constant="16" id="YPV-ha-vcJ"/>
                         <constraint firstItem="sfK-OX-zDu" firstAttribute="trailing" secondItem="5UK-Ax-LPX" secondAttribute="trailing" id="ag1-OV-s6i"/>
                         <constraint firstItem="9HR-BI-HRT" firstAttribute="top" secondItem="xIm-sh-9hf" secondAttribute="bottom" constant="16" id="asr-At-LyQ"/>
@@ -159,16 +170,15 @@
                         <constraint firstItem="sfK-OX-zDu" firstAttribute="top" secondItem="9HR-BI-HRT" secondAttribute="bottom" constant="16" id="tCW-Vf-gGc"/>
                         <constraint firstItem="d6S-Fq-lRg" firstAttribute="centerY" secondItem="xIm-sh-9hf" secondAttribute="centerY" id="wCw-Nd-nd2"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="width" secondItem="Lp9-DM-aFA" secondAttribute="width" constant="-32" id="wDg-Ts-P66"/>
-                        <constraint firstAttribute="bottom" secondItem="5UK-Ax-LPX" secondAttribute="bottom" constant="404" id="y1l-ps-bzW"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6SQ-Dc-Pnv"/>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="jCe-eZ-zSy"/>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="l65-AC-XE4"/>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="sZy-3I-xnr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lp9-DM-aFA" secondAttribute="trailing" id="3Uy-sD-GA2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Lp9-DM-aFA" secondAttribute="bottom" id="JhK-3e-9sp"/>
+                <constraint firstItem="Lp9-DM-aFA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="POy-pr-StU"/>
+                <constraint firstItem="Lp9-DM-aFA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nR4-gI-95e"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="179.5" y="-202.5"/>

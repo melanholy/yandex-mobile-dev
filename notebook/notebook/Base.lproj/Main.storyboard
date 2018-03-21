@@ -14,12 +14,15 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ez3-WP-fIU" customClass="ColorPickerView" customModule="notebook" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Gj5-Sv-Xys" customClass="EditView" customModule="notebook" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="odR-r4-jVu"/>
+                        <viewLayoutGuide key="safeArea" id="j1U-qT-3ew"/>
                     </view>
+                    <connections>
+                        <segue destination="uYC-Yl-d6j" kind="show" id="XzJ-eC-t26"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCJ-Bn-MZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="32"/>
+            <point key="canvasLocation" x="822" y="30"/>
         </scene>
     </scenes>
 </document>

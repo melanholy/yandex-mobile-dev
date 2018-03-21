@@ -9,7 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-class ColorPalette: UIButton {
+class ColorPalette: UIView {
     private var pixelData: [Float]? = nil
     private var brightness: Float = 1
     
@@ -127,8 +127,8 @@ class ColorPalette: UIButton {
         
         let width = Int(self.frame.width)
         let height = Int(self.frame.height)
+
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        
         guard let bitmapContext = CGContext(
             data: nil,
             width: width,
@@ -136,7 +136,7 @@ class ColorPalette: UIButton {
             bitsPerComponent: 32,
             bytesPerRow: 16 * width,
             space: colorSpace,
-            bitmapInfo: CGBitmapInfo.floatComponents.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue) else {
+            bitmapInfo: CGBitmapInfo.floatComponents.rawValue | CGImageAlphaInfo.last.rawValue) else {
                 DDLogError("Failed to create CGContext in ColorPalette.draw")
                 return
         }

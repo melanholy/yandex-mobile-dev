@@ -91,7 +91,7 @@ class ColorPickerView: UIView {
         ctx.setFillColor(UIColor.red.cgColor)
         ctx.setLineWidth(10)
         ctx.addArc(
-            center: CGPoint(x: 100, y: 60),
+            center: circleCenter,
             radius: 20,
             startAngle: 0,
             endAngle: CGFloat.pi * 2,

@@ -9,7 +9,11 @@
 import UIKit
 import CocoaLumberjack
 
-class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
+@objc protocol EditViewDelegate : class {
+    func showColorPicker()
+}
+
+@IBDesignable class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var destroyDateSwitch: UISwitch!
     @IBOutlet weak var noteNameTextField: UITextField!
@@ -25,6 +29,8 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
     
     var keyboardHeight: CGFloat = -1
     let screenSize = UIScreen.main.bounds
+    
+    @IBOutlet weak var delegate: EditViewDelegate? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,12 +64,13 @@ class EditView: UIView, UITextFieldDelegate, UITextViewDelegate {
     }
     
     @IBAction func longPressOnColorPicker(_ sender: UILongPressGestureRecognizer) {
-        
+        delegate?.showColorPicker()
     }
     
     func resizeContent() {
         noteContentTextView.sizeToFit()
-        contentTextHeight.constant = noteContentTextView.frame.height
+        let sz = noteContentTextView.systemLayoutSizeFitting(CGSize(width: bounds.size.width, height: UILayoutFittingCompressedSize.height), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        contentTextHeight.constant = sz.height // noteContentTextView.frame.height
         setNeedsUpdateConstraints()
     }
     

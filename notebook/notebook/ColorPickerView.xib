@@ -42,7 +42,7 @@
                     <rect key="frame" x="16" y="168" width="288" height="327"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Kh-aDY" customClass="ColorPalette" customModule="notebook" customModuleProvider="target">
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Kh-aDY" customClass="ColorPalette" customModule="notebook" customModuleProvider="target">
                     <rect key="frame" x="18" y="170" width="284" height="323"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
@@ -58,11 +58,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFS-ML-uhU">
-                    <rect key="frame" x="142" y="518" width="37" height="30"/>
+                    <rect key="frame" x="141.5" y="518" width="37" height="30"/>
                     <state key="normal" title="Done"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="hSm-Kh-aDY" firstAttribute="width" secondItem="aG7-1T-i6I" secondAttribute="width" constant="-4" id="0Ua-F2-tw5"/>
                 <constraint firstItem="X1u-PW-l4B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="1pU-A7-oVV"/>

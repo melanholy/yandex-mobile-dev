@@ -9,6 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet private weak var editView: EditView! {
+        didSet {
+            editView.delegate = self
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -16,5 +23,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+    }
+}
+
+extension ViewController : EditViewDelegate {
+    func showColorPicker() {
+        //self.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
 }

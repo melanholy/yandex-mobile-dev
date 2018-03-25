@@ -34,29 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func simulateBadCpu() {
-        let notebook = FileNotebook()
-        for i in 1...10000 {
-            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
-            notebook.add(note)
-        }
-        try! notebook.save()
-        
-        let notebookCpu = FileNotebookBadCpu()
-        try! notebookCpu.load()
-    }
-    
-    func simulateBadMem() {
-        let notebookMem = FileNotebookBadMem()
-        for i in 1...1000 {
-            let note = Note(uid: "\(i)", title: "", content: "", importance: Importance.common)
-            notebookMem.add(note)
-        }
-        notebookMem.removeNote(withUid: "1")
-        try! notebookMem.save()
-        try! notebookMem.load()
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console

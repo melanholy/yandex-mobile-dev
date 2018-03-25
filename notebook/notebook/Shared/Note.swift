@@ -15,14 +15,12 @@ enum Importance: Int {
 }
 
 struct Note {
-    private static let defaultRelevantInterval: TimeInterval = 7 * 24 * 60 * 60
-    
     let uid: String
     let title: String
     let content: String
     let color: UIColor
     let importance: Importance
-    let relevantTo: Date
+    let relevantTo: Date?
     
     init(uid: String = UUID().uuidString,
          title: String,
@@ -35,11 +33,11 @@ struct Note {
         self.content = content
         self.color = color
         self.importance = importance
-        self.relevantTo = relevantTo ?? Date().addingTimeInterval(Note.defaultRelevantInterval)
+        self.relevantTo = relevantTo
     }
     
     func isRelevant() -> Bool {
-        return Date() < relevantTo
+        return relevantTo == nil ? true : Date() < relevantTo!
     }
 }
 
@@ -49,9 +47,12 @@ extension Note {
             var result: [String: Any] = [
                 "uid": uid,
                 "title": title,
-                "content": content,
-                "relevantTo": relevantTo.timeIntervalSince1970
+                "content": content
             ]
+            
+            if let relevantTo = relevantTo {
+                result["relevantTo"] = relevantTo.timeIntervalSince1970
+            }
             
             if importance != Importance.common {
                 result["importance"] = importance.rawValue

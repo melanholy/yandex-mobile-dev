@@ -9,46 +9,80 @@
 import UIKit
 import CocoaLumberjack
 
-class ColorPalette: UIView {
-    private var pixelData: [Float]? = nil
+class ColorPalette {
+    private var pixelData: [Float] = [Float]()
     private var brightness: Float = 1
+    private var imageCache: CGImage? = nil
+    private var lastBrightness: Float = -1
+    private let width: Float
+    private let height: Float
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    init(width: Float, height: Float) {
+        self.width = width
+        self.height = height
+        pixelData = getPixelDataWith(brightness: brightness)
     }
     
     public func setBrightess(_ brightness: Float) {
-        self.brightness = brightness
-        setNeedsDisplay()
+        pixelData = getPixelDataWith(brightness: brightness)
     }
     
     public func getColorAt(x: Int, y: Int) -> UIColor? {
-        if let pixelData = pixelData {
-            let width = Int(self.frame.width)
-            let origin = pixelData.count - (width * (y + 1) - x) * 4
-            return UIColor(
-                red: CGFloat(pixelData[origin]),
-                green: CGFloat(pixelData[origin + 1]),
-                blue: CGFloat(pixelData[origin + 2]),
-                alpha: CGFloat(pixelData[origin + 3]))
-        } else {
-            DDLogError("ColorPalette.getColorAt was called with nil pixelData")
+        let width = Int(self.width)
+        let origin = pixelData.count - (width * (y + 1) - x) * 4
+        return UIColor(
+            red: CGFloat(pixelData[origin]),
+            green: CGFloat(pixelData[origin + 1]),
+            blue: CGFloat(pixelData[origin + 2]),
+            alpha: CGFloat(pixelData[origin + 3]))
+    }
+    
+    public func getImage() -> CGImage? {
+        if let imageCache = imageCache, lastBrightness == brightness {
+            return imageCache
+        }
+    
+        let width = Int(self.width)
+        let height = Int(self.height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let bitmapContext = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: 32,
+            bytesPerRow: 16 * width,
+            space: colorSpace,
+            bitmapInfo: CGBitmapInfo.floatComponents.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                DDLogError("Failed to create CGContext in ColorPalette.draw")
+                return nil
+        }
+        
+        guard let bitmapData = bitmapContext.data?.assumingMemoryBound(to: Float.self) else {
+            DDLogError("CGContext didn't have data in ColorPalette.draw")
             return nil
         }
+        bitmapData.assign(from: UnsafePointer<Float>(pixelData), count: width * height * 4)
+        
+        guard let image = bitmapContext.makeImage() else {
+            DDLogError("Failed to get image from CGContext in ColorPalette.draw")
+            return nil
+        }
+        
+        imageCache = image
+        lastBrightness = brightness
+        
+        return image
     }
     
     private func getPixelDataWith(brightness: Float) -> [Float] {
-        let width = Int(self.frame.width)
-        let height = Int(self.frame.height)
+        let width = Int(self.width)
+        let height = Int(self.height)
         
         var data = [Float]()
         data.reserveCapacity(width * height * 4)
-        let alphaStep = 1 / Float(self.frame.height)
-        let colorStep = 1 / (Float(self.frame.width) / 6)
+        let alphaStep = 1 / self.height
+        let colorStep = 1 / (self.width / 6)
         var currentAlpha: Float = 0
         while currentAlpha < 1 {
             var red: Float = 1
@@ -114,44 +148,5 @@ class ColorPalette: UIView {
         }
         
         return data
-    }
-    
-    override func draw(_ rect: CGRect) {
-        guard let ctx = UIGraphicsGetCurrentContext() else {
-            DDLogError("Failed to get current CGContext in ColorPalette.draw")
-            return
-        }
-        
-        let data = getPixelDataWith(brightness: brightness)
-        pixelData = data
-        
-        let width = Int(self.frame.width)
-        let height = Int(self.frame.height)
-
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        guard let bitmapContext = CGContext(
-            data: nil,
-            width: width,
-            height: height,
-            bitsPerComponent: 32,
-            bytesPerRow: 16 * width,
-            space: colorSpace,
-            bitmapInfo: CGBitmapInfo.floatComponents.rawValue | CGImageAlphaInfo.last.rawValue) else {
-                DDLogError("Failed to create CGContext in ColorPalette.draw")
-                return
-        }
-        
-        guard let bitmapData = bitmapContext.data?.assumingMemoryBound(to: Float.self) else {
-            DDLogError("CGContext didn't have data in ColorPalette.draw")
-            return
-        }
-        bitmapData.assign(from: UnsafePointer<Float>(data), count: width * height * 4)
-
-        guard let image = bitmapContext.makeImage() else {
-            DDLogError("Failed to get image from CGContext in ColorPalette.draw")
-            return
-        }
-        
-        ctx.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
     }
 }

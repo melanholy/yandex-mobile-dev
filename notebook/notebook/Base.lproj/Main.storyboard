@@ -1,45 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eWm-Da-ZKr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="w0x-bs-d8I">
+            <objects>
+                <navigationController id="eWm-Da-ZKr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VBi-pb-1kw">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YeH-4X-NIW" kind="relationship" relationship="rootViewController" id="xhq-bP-a9g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JNq-m4-zPY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1614" y="43"/>
+        </scene>
+        <!--Notes-->
+        <scene sceneID="Eby-ni-eRI">
+            <objects>
+                <viewController id="YeH-4X-NIW" customClass="NotesListViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bxA-7o-ad3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kj1-0h-6H3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ARG-qN-Fm7">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="noteCell" id="wK9-GE-qz5" customClass="NoteCollectionViewCell" customModule="notebook" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlB-ED-oT2">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ENc-pa-D0V">
+                                        <rect key="frame" x="123" y="4.5" width="128" height="31"/>
+                                        <connections>
+                                            <action selector="elementWidthSliderValueChanged:" destination="YeH-4X-NIW" eventType="valueChanged" id="Reb-MU-H65"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="239-mF-npV"/>
+                                    <constraint firstItem="ENc-pa-D0V" firstAttribute="centerX" secondItem="vlB-ED-oT2" secondAttribute="centerX" id="D8x-Oi-dYQ"/>
+                                    <constraint firstItem="ENc-pa-D0V" firstAttribute="width" secondItem="vlB-ED-oT2" secondAttribute="width" multiplier="0.33" id="I6Q-aI-0p6"/>
+                                    <constraint firstItem="ENc-pa-D0V" firstAttribute="centerY" secondItem="vlB-ED-oT2" secondAttribute="centerY" id="nRL-Kh-FGN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Unt-eG-cCj" firstAttribute="bottom" secondItem="vlB-ED-oT2" secondAttribute="bottom" id="45W-nK-Jlu"/>
+                            <constraint firstItem="vlB-ED-oT2" firstAttribute="top" secondItem="Kj1-0h-6H3" secondAttribute="bottom" id="AaT-ud-K0B"/>
+                            <constraint firstItem="Unt-eG-cCj" firstAttribute="trailing" secondItem="Kj1-0h-6H3" secondAttribute="trailing" id="DN0-Ww-nj0"/>
+                            <constraint firstItem="vlB-ED-oT2" firstAttribute="leading" secondItem="Unt-eG-cCj" secondAttribute="leading" id="NVD-RC-3jD"/>
+                            <constraint firstItem="Unt-eG-cCj" firstAttribute="trailing" secondItem="vlB-ED-oT2" secondAttribute="trailing" id="d3h-eB-0xh"/>
+                            <constraint firstItem="Kj1-0h-6H3" firstAttribute="leading" secondItem="Unt-eG-cCj" secondAttribute="leading" id="nSf-Wc-Pbf"/>
+                            <constraint firstItem="Kj1-0h-6H3" firstAttribute="top" secondItem="Unt-eG-cCj" secondAttribute="top" id="nmn-WQ-bwR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Unt-eG-cCj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notes" id="MEb-W3-X5l">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="hPi-23-I3U">
+                            <connections>
+                                <action selector="editDidTap:" destination="YeH-4X-NIW" id="qpQ-77-RTu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Eco-jX-ohg">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="showEditView" id="OJK-BG-AqL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="elementWidthSlider" destination="ENc-pa-D0V" id="838-db-AQ5"/>
+                        <outlet property="notesCollectionView" destination="Kj1-0h-6H3" id="gEm-ph-94U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9t-Dk-eBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-815.20000000000005" y="61.619190404797607"/>
+        </scene>
+        <!--Edit Note-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gj5-Sv-Xys" customClass="ColorPickerView" customModule="notebook" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Gj5-Sv-Xys" customClass="EditView" customModule="notebook" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="j1U-qT-3ew"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Note" id="a1L-FV-SqZ">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="save" id="bzk-p6-Lwy">
+                            <connections>
+                                <segue destination="Ma5-uM-ZtS" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="lBc-UQ-jrn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="uYC-Yl-d6j" kind="show" id="XzJ-eC-t26"/>
+                        <outlet property="editView" destination="Gj5-Sv-Xys" id="5U4-1t-jud"/>
+                        <segue destination="uYC-Yl-d6j" kind="show" identifier="showColorPickerView" id="XzJ-eC-t26"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Ma5-uM-ZtS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="20" y="43"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oL1-GP-YBi">
             <objects>
-                <viewController id="uYC-Yl-d6j" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FYS-Ec-Lq6">
+                <viewController id="uYC-Yl-d6j" customClass="ViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FYS-Ec-Lq6" customClass="ColorPickerView" customModule="notebook" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WYw-Rq-txD"/>
                     </view>
+                    <connections>
+                        <outlet property="colorPickerView" destination="FYS-Ec-Lq6" id="K7k-fi-0Pa"/>
+                        <segue destination="vgc-XH-o7t" kind="unwind" unwindAction="unwindToEditViewWithSegue:" id="Pn6-k7-FSW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCJ-Bn-MZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vgc-XH-o7t" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="822" y="30"/>
         </scene>

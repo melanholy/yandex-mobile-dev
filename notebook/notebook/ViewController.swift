@@ -9,15 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet private weak var editView: EditView! {
+    @IBOutlet weak var editView: EditView! {
         didSet {
             editView.delegate = self
+        }
+    }
+    @IBOutlet weak var colorPickerView: ColorPickerView! {
+        didSet {
+            colorPickerView.delegate = self
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    @IBAction func unwindToEditView(segue: UIStoryboardSegue) {
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,8 +35,14 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : EditViewDelegate {
+extension ViewController: EditViewDelegate {
     func showColorPicker() {
-        //self.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        performSegue(withIdentifier: "showColorPickerView", sender: self)
+    }
+}
+
+extension ViewController: ColorPickerViewDeletegate {
+    func close(selectedColor: UIColor) {
+        performSegue(withIdentifier: "unwindToEditView", sender: self)
     }
 }

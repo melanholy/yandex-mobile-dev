@@ -7,28 +7,26 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditView" customModule="notebook" customModuleProvider="target">
             <connections>
-                <outlet property="colorPaletteButton" destination="Ftf-X6-R58" id="aDt-Op-n33"/>
-                <outlet property="colorPickerGestureRecognizer" destination="smQ-4k-hlh" id="7Fw-pg-osf"/>
                 <outlet property="colorsStackView" destination="sfK-OX-zDu" id="t5Z-6F-NuK"/>
                 <outlet property="contentTextHeight" destination="Kbo-0j-rYs" id="YYf-7Y-ECR"/>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="wPf-5Q-sch"/>
                 <outlet property="datePickerHeightConstraint" destination="nP6-yq-LeT" id="ToX-1L-W2r"/>
+                <outlet property="destroyDatePicker" destination="9HR-BI-HRT" id="lYT-E9-eWQ"/>
                 <outlet property="destroyDateSwitch" destination="d6S-Fq-lRg" id="PG2-p6-Dma"/>
                 <outlet property="mainScrollView" destination="Lp9-DM-aFA" id="VVp-s0-doy"/>
                 <outlet property="noteContentTextView" destination="xvk-Qy-bg3" id="c6G-DP-nvL"/>
                 <outlet property="noteNameTextField" destination="5UK-Ax-LPX" id="A7i-VH-SOH"/>
-                <outlet property="paletteButtonBorder" destination="wxn-qy-Zpg" id="S1u-37-eJT"/>
                 <outletCollection property="colorButtons" destination="OkJ-TC-zQF" collectionClass="NSMutableArray" id="bfw-6T-xQs"/>
                 <outletCollection property="colorButtons" destination="pTr-ll-F5g" collectionClass="NSMutableArray" id="MIA-51-dm4"/>
                 <outletCollection property="colorButtons" destination="Rq9-Wu-Zpp" collectionClass="NSMutableArray" id="2zR-BA-ehe"/>
                 <outletCollection property="colorButtons" destination="vFG-e0-uuV" collectionClass="NSMutableArray" id="e3f-6c-pjg"/>
+                <outletCollection property="colorButtons" destination="BBE-KO-9nr" collectionClass="NSMutableArray" id="pfc-em-lig"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -64,7 +62,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-Fq-lRg">
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-Fq-lRg">
                             <rect key="frame" x="155" y="198" width="51" height="31"/>
                             <connections>
                                 <action selector="useDestroyDateDidChange" destination="-1" eventType="valueChanged" id="8bP-6a-qZU"/>
@@ -84,68 +82,76 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkJ-TC-zQF" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
-                                    <color key="backgroundColor" red="1" green="0.0059652226802521247" blue="0.037859833272396948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="OkJ-TC-zQF" secondAttribute="height" multiplier="1:1" id="lLL-IL-MuB"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="1" green="0.0059652226799999999" blue="0.037859833269999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="colorDidTap:" destination="-1" eventType="touchUpInside" id="24r-sk-eGC"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTr-ll-F5g" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
                                     <rect key="frame" x="58.5" y="0.0" width="55" height="55"/>
-                                    <color key="backgroundColor" red="0.049317540757329414" green="1" blue="0.093427175022876341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="pTr-ll-F5g" secondAttribute="height" multiplier="1:1" id="euo-qq-RQ1"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="0.04025254985" green="1" blue="0.022724341120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="colorDidTap:" destination="-1" eventType="touchUpInside" id="h1m-p6-BBT"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq9-Wu-Zpp" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
                                     <rect key="frame" x="116.5" y="0.0" width="55" height="55"/>
-                                    <color key="backgroundColor" red="1" green="0.94511826143813438" blue="0.05429228799762198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Rq9-Wu-Zpp" secondAttribute="height" multiplier="1:1" id="fr7-1t-fR0"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="1" green="0.90088221219999998" blue="0.16468338229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="colorDidTap:" destination="-1" eventType="touchUpInside" id="6ew-SE-oQ7"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFG-e0-uuV" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
                                     <rect key="frame" x="175" y="0.0" width="55" height="55"/>
-                                    <color key="backgroundColor" red="0.024965583832521898" green="0.3306580187876248" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="vFG-e0-uuV" secondAttribute="height" multiplier="1:1" id="0FN-aQ-xo1"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="colorDidTap:" destination="-1" eventType="touchUpInside" id="p9w-u6-ckU"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxn-qy-Zpg">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBE-KO-9nr" customClass="PaletteColorButton" customModule="notebook" customModuleProvider="target">
                                     <rect key="frame" x="233" y="0.0" width="55" height="55"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ftf-X6-R58" customClass="ColorPalette" customModule="notebook" customModuleProvider="target">
-                                            <rect key="frame" x="2" y="2" width="51" height="51"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="centerX" secondItem="wxn-qy-Zpg" secondAttribute="centerX" id="PcC-0U-3EV"/>
-                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="centerY" secondItem="wxn-qy-Zpg" secondAttribute="centerY" id="Z1T-Sm-9r5"/>
-                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="width" secondItem="wxn-qy-Zpg" secondAttribute="width" constant="-4" id="p1s-PN-vjq"/>
-                                        <constraint firstAttribute="width" secondItem="wxn-qy-Zpg" secondAttribute="height" multiplier="1:1" id="xVf-P6-vkW"/>
-                                        <constraint firstItem="Ftf-X6-R58" firstAttribute="height" secondItem="wxn-qy-Zpg" secondAttribute="height" constant="-4" id="zgn-Oa-eu4"/>
+                                        <constraint firstAttribute="width" secondItem="BBE-KO-9nr" secondAttribute="height" multiplier="1:1" id="VKy-dR-ak0"/>
                                     </constraints>
-                                </view>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="tJF-Co-aGQ" appends="YES" id="Oa9-sE-slv"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="pTr-ll-F5g" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="9XL-fu-fH3"/>
-                                <constraint firstItem="vFG-e0-uuV" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="BiF-Qg-NUZ"/>
-                                <constraint firstItem="Rq9-Wu-Zpp" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="UiY-HZ-r1u"/>
-                                <constraint firstItem="wxn-qy-Zpg" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="f0q-IW-jAQ"/>
-                                <constraint firstItem="OkJ-TC-zQF" firstAttribute="width" secondItem="sfK-OX-zDu" secondAttribute="width" multiplier="0.19" id="lK5-8X-2vV"/>
+                                <constraint firstAttribute="height" constant="55" id="hMp-2L-MhV"/>
                             </constraints>
                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                         </stackView>
@@ -160,7 +166,6 @@
                         <constraint firstAttribute="bottom" secondItem="sfK-OX-zDu" secondAttribute="bottom" constant="88" id="OX8-Dx-S6I"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="leading" secondItem="Lp9-DM-aFA" secondAttribute="leading" constant="16" id="SSq-7v-yyA"/>
                         <constraint firstItem="5UK-Ax-LPX" firstAttribute="trailing" secondItem="xvk-Qy-bg3" secondAttribute="trailing" id="TV2-2P-M9a"/>
-                        <constraint firstItem="sfK-OX-zDu" firstAttribute="width" secondItem="5UK-Ax-LPX" secondAttribute="width" id="Vqy-Te-aKO"/>
                         <constraint firstItem="xIm-sh-9hf" firstAttribute="top" secondItem="xvk-Qy-bg3" secondAttribute="bottom" constant="16" id="YPV-ha-vcJ"/>
                         <constraint firstItem="sfK-OX-zDu" firstAttribute="trailing" secondItem="5UK-Ax-LPX" secondAttribute="trailing" id="ag1-OV-s6i"/>
                         <constraint firstItem="9HR-BI-HRT" firstAttribute="top" secondItem="xIm-sh-9hf" secondAttribute="bottom" constant="16" id="asr-At-LyQ"/>
@@ -175,17 +180,17 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lp9-DM-aFA" secondAttribute="trailing" id="3Uy-sD-GA2"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Lp9-DM-aFA" secondAttribute="bottom" id="JhK-3e-9sp"/>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="POy-pr-StU"/>
-                <constraint firstItem="Lp9-DM-aFA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nR4-gI-95e"/>
+                <constraint firstItem="Lp9-DM-aFA" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" id="7oZ-YT-M7k"/>
+                <constraint firstItem="Lp9-DM-aFA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NBR-Dx-V6t"/>
+                <constraint firstItem="Lp9-DM-aFA" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="Zfi-Ie-5tC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="Lp9-DM-aFA" secondAttribute="leading" id="gBz-6c-FIu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="179.5" y="-202.5"/>
         </view>
-        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="smQ-4k-hlh">
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="tJF-Co-aGQ">
             <connections>
-                <action selector="longPressOnColorPicker:" destination="-1" id="O6n-Gi-BaH"/>
+                <action selector="longPressOnColorPicker:" destination="-1" id="R72-DC-kCj"/>
             </connections>
         </pongPressGestureRecognizer>
     </objects>

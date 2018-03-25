@@ -9,16 +9,20 @@
 import UIKit
 
 class ColorButton: UIButton {
-    private var selectedColor: Bool = false
-    
-    init(color: UIColor) {
-        super.init(frame: CGRect.zero)
-        
-        setup(color)
+    public var selectedColor: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
     }
-    
+    @IBInspectable public var color: UIColor? {
+        didSet {
+            layer.backgroundColor = color?.cgColor
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,10 +30,7 @@ class ColorButton: UIButton {
         setup()
     }
     
-    private func setup(_ color: UIColor? = nil) {
-        if color != nil {
-            self.backgroundColor = color
-        }
+    private func setup() {
         self.layer.borderWidth = 2
         self.layer.borderColor = UIColor.black.cgColor
     }
@@ -57,15 +58,5 @@ class ColorButton: UIButton {
             ctx.addLine(to: CGPoint(x: circleCenterX + 5, y: circleCenterY - 6))
             ctx.strokePath()
         }
-    }
-    
-    public func select() {
-        selectedColor = true
-        setNeedsDisplay()
-    }
-    
-    public func deselect() {
-        selectedColor = false
-        setNeedsDisplay()
     }
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -110,49 +111,255 @@
         <!--Edit Note-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gj5-Sv-Xys" customClass="EditView" customModule="notebook" customModuleProvider="target">
+                <viewController id="BYZ-38-t0r" customClass="EditViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="w8Q-zF-VSQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="j1U-qT-3ew"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKD-AJ-IW3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter title for your note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGe-7V-dZ1">
+                                        <rect key="frame" x="16" y="16" width="343" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="zfW-ks-fDt"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iB-SD-8bG">
+                                        <rect key="frame" x="16" y="72" width="343" height="115"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="115" id="gLh-On-7Hd"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use destroy date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teA-WZ-c0G">
+                                        <rect key="frame" x="16" y="203" width="131" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hqw-9m-r7j">
+                                        <rect key="frame" x="155" y="198" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="useDestroyDateDidChange" destination="BYZ-38-t0r" eventType="valueChanged" id="MGr-0R-Wjy"/>
+                                        </connections>
+                                    </switch>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2x-rR-SW4">
+                                        <rect key="frame" x="16" y="239.5" width="343" height="150"/>
+                                        <subviews>
+                                            <datePicker contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qVK-KD-0al">
+                                                <rect key="frame" x="0.0" y="-33.5" width="343" height="216"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="543075741.48764098">
+                                                    <!--2018-03-18 14:22:21 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="qVK-KD-0al" secondAttribute="trailing" id="2a0-v5-p7a"/>
+                                            <constraint firstItem="qVK-KD-0al" firstAttribute="leading" secondItem="z2x-rR-SW4" secondAttribute="leading" id="Bzs-Jo-G0J"/>
+                                            <constraint firstAttribute="height" constant="150" id="bug-un-8Rg"/>
+                                            <constraint firstItem="qVK-KD-0al" firstAttribute="centerY" secondItem="z2x-rR-SW4" secondAttribute="centerY" id="yQd-Ru-fwF"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="BD6-gs-0iR">
+                                        <rect key="frame" x="16" y="405.5" width="343" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4G-yy-ttK" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="l4G-yy-ttK" secondAttribute="height" multiplier="1:1" id="e7R-w1-yvM"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="1" green="0.0059652226799999999" blue="0.037859833269999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="colorDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VOh-GY-Y7a"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPO-OM-mrC" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
+                                                <rect key="frame" x="72" y="0.0" width="55" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="PPO-OM-mrC" secondAttribute="height" multiplier="1:1" id="gMM-QZ-oBa"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.04025254985" green="1" blue="0.022724341120000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="colorDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ow7-7k-yq3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASa-RI-dco" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
+                                                <rect key="frame" x="144" y="0.0" width="55" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ASa-RI-dco" secondAttribute="height" multiplier="1:1" id="Y2f-3z-aXA"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="1" green="0.90088221219999998" blue="0.16468338229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="colorDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IZG-uw-kya"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DbD-V6-YLI" customClass="ColorButton" customModule="notebook" customModuleProvider="target">
+                                                <rect key="frame" x="216" y="0.0" width="55" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="DbD-V6-YLI" secondAttribute="height" multiplier="1:1" id="yo6-yh-LZY"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="colorDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iz2-Qa-l9C"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ME6-Nw-c1D" customClass="PaletteColorButton" customModule="notebook" customModuleProvider="target">
+                                                <rect key="frame" x="288" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ME6-Nw-c1D" secondAttribute="height" multiplier="1:1" id="2uU-RB-5wQ"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="colorDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZwI-7j-Xar"/>
+                                                    <outletCollection property="gestureRecognizers" destination="ezZ-f7-flE" appends="YES" id="y62-kG-Nzn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="TID-pI-9ox"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hqw-9m-r7j" firstAttribute="centerY" secondItem="teA-WZ-c0G" secondAttribute="centerY" id="1E9-Xq-dtt"/>
+                                    <constraint firstItem="lGe-7V-dZ1" firstAttribute="width" secondItem="tKD-AJ-IW3" secondAttribute="width" constant="-32" id="2IV-6H-Z2Q"/>
+                                    <constraint firstItem="lGe-7V-dZ1" firstAttribute="leading" secondItem="4iB-SD-8bG" secondAttribute="leading" id="3a9-0x-AYp"/>
+                                    <constraint firstItem="BD6-gs-0iR" firstAttribute="leading" secondItem="lGe-7V-dZ1" secondAttribute="leading" id="7fn-wT-hWP"/>
+                                    <constraint firstItem="z2x-rR-SW4" firstAttribute="top" secondItem="teA-WZ-c0G" secondAttribute="bottom" constant="15.999999999999972" id="ErA-nm-3vD"/>
+                                    <constraint firstItem="4iB-SD-8bG" firstAttribute="leading" secondItem="teA-WZ-c0G" secondAttribute="leading" id="G1e-hy-3ZP"/>
+                                    <constraint firstItem="lGe-7V-dZ1" firstAttribute="trailing" secondItem="4iB-SD-8bG" secondAttribute="trailing" id="GMB-Ty-KRd"/>
+                                    <constraint firstItem="z2x-rR-SW4" firstAttribute="trailing" secondItem="lGe-7V-dZ1" secondAttribute="trailing" id="KM8-T2-Kh5"/>
+                                    <constraint firstItem="BD6-gs-0iR" firstAttribute="trailing" secondItem="lGe-7V-dZ1" secondAttribute="trailing" id="LWl-F9-G2w"/>
+                                    <constraint firstItem="4iB-SD-8bG" firstAttribute="top" secondItem="lGe-7V-dZ1" secondAttribute="bottom" constant="16" id="M2i-7N-IV7"/>
+                                    <constraint firstItem="lGe-7V-dZ1" firstAttribute="leading" secondItem="tKD-AJ-IW3" secondAttribute="leading" constant="16" id="P81-gk-tKb"/>
+                                    <constraint firstItem="lGe-7V-dZ1" firstAttribute="top" secondItem="tKD-AJ-IW3" secondAttribute="top" constant="16" id="hmM-Y0-YCs"/>
+                                    <constraint firstAttribute="bottom" secondItem="BD6-gs-0iR" secondAttribute="bottom" constant="80" id="nDn-iK-vGE"/>
+                                    <constraint firstItem="teA-WZ-c0G" firstAttribute="top" secondItem="4iB-SD-8bG" secondAttribute="bottom" constant="16" id="rNP-N1-2hJ"/>
+                                    <constraint firstItem="z2x-rR-SW4" firstAttribute="leading" secondItem="lGe-7V-dZ1" secondAttribute="leading" id="rp3-vR-1h9"/>
+                                    <constraint firstItem="hqw-9m-r7j" firstAttribute="leading" secondItem="teA-WZ-c0G" secondAttribute="trailing" constant="8" id="yNC-Da-kaK"/>
+                                    <constraint firstAttribute="trailing" secondItem="lGe-7V-dZ1" secondAttribute="trailing" constant="16" id="ySD-as-If4"/>
+                                    <constraint firstItem="BD6-gs-0iR" firstAttribute="top" secondItem="z2x-rR-SW4" secondAttribute="bottom" constant="16" id="zOz-LV-HDT"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tKD-AJ-IW3" firstAttribute="top" secondItem="fiO-MF-uFQ" secondAttribute="top" id="2jO-JI-yy3"/>
+                            <constraint firstItem="fiO-MF-uFQ" firstAttribute="bottom" secondItem="tKD-AJ-IW3" secondAttribute="bottom" id="Wso-K5-lAg"/>
+                            <constraint firstItem="fiO-MF-uFQ" firstAttribute="leading" secondItem="tKD-AJ-IW3" secondAttribute="leading" id="XwE-1O-UBA"/>
+                            <constraint firstItem="tKD-AJ-IW3" firstAttribute="trailing" secondItem="fiO-MF-uFQ" secondAttribute="trailing" id="nXH-t5-y1s"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fiO-MF-uFQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Note" id="a1L-FV-SqZ">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="save" id="bzk-p6-Lwy">
                             <connections>
-                                <segue destination="Ma5-uM-ZtS" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="lBc-UQ-jrn"/>
+                                <segue destination="Ma5-uM-ZtS" kind="unwind" unwindAction="unwindToNotesListWithSender:" id="EH0-mX-HyM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editView" destination="Gj5-Sv-Xys" id="5U4-1t-jud"/>
-                        <segue destination="uYC-Yl-d6j" kind="show" identifier="showColorPickerView" id="XzJ-eC-t26"/>
+                        <outlet property="bottomSpacingConstraint" destination="nDn-iK-vGE" id="D0k-PO-1UF"/>
+                        <outlet property="contentView" destination="w8Q-zF-VSQ" id="4fK-bN-XoQ"/>
+                        <outlet property="datePickerAlignConstraint" destination="yQd-Ru-fwF" id="H2f-FV-2WQ"/>
+                        <outlet property="datePickerHeightConstraint" destination="bug-un-8Rg" id="Fkm-in-ixO"/>
+                        <outlet property="destroyDatePicker" destination="qVK-KD-0al" id="i3Z-8Z-Arc"/>
+                        <outlet property="destroyDateSwitch" destination="hqw-9m-r7j" id="hMj-Qg-hGB"/>
+                        <outlet property="noteContentHeightConstraint" destination="gLh-On-7Hd" id="7Kc-eL-myG"/>
+                        <outlet property="noteContentTextView" destination="4iB-SD-8bG" id="BQ9-mK-55v"/>
+                        <outlet property="noteTitleTextField" destination="lGe-7V-dZ1" id="snh-Pq-Vft"/>
+                        <outlet property="paletteColorButton" destination="ME6-Nw-c1D" id="0IV-ug-3Yb"/>
+                        <outlet property="scrollView" destination="tKD-AJ-IW3" id="nm2-J5-Rjg"/>
+                        <outletCollection property="colorButtons" destination="l4G-yy-ttK" collectionClass="NSMutableArray" id="QAj-rc-hNZ"/>
+                        <outletCollection property="colorButtons" destination="PPO-OM-mrC" collectionClass="NSMutableArray" id="rP6-Xe-rQ2"/>
+                        <outletCollection property="colorButtons" destination="ASa-RI-dco" collectionClass="NSMutableArray" id="Rq3-l1-6dd"/>
+                        <outletCollection property="colorButtons" destination="DbD-V6-YLI" collectionClass="NSMutableArray" id="PtK-0l-3Qe"/>
+                        <outletCollection property="colorButtons" destination="ME6-Nw-c1D" collectionClass="NSMutableArray" id="pDG-fp-M0o"/>
+                        <segue destination="GRm-we-yUx" kind="presentation" identifier="showColorPicker" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="not-7b-9pN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="Ma5-uM-ZtS" userLabel="Exit" sceneMemberID="exit"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ezZ-f7-flE">
+                    <connections>
+                        <action selector="longPressLongPressed:" destination="BYZ-38-t0r" id="huv-kx-sAJ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="20" y="43"/>
+            <point key="canvasLocation" x="81" y="43"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="oL1-GP-YBi">
+        <!--Color Picker View Controller-->
+        <scene sceneID="UAo-Ja-wY0">
             <objects>
-                <viewController id="uYC-Yl-d6j" customClass="ViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FYS-Ec-Lq6" customClass="ColorPickerView" customModule="notebook" customModuleProvider="target">
+                <viewController storyboardIdentifier="ColorPickerViewController" id="GRm-we-yUx" customClass="ColorPickerViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DMp-Qx-4Rk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="WYw-Rq-txD"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dr-c9-MdE">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <action selector="dismissDidTap:" destination="GRm-we-yUx" eventType="touchUpInside" id="wAR-Yx-CpA"/>
+                                    <segue destination="LRy-ic-QLO" kind="unwind" unwindAction="unwindToEditViewWithSender:" id="QJp-qp-Aus"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-4h-kbW" customClass="ColorPickerView" customModule="notebook" customModuleProvider="target">
+                                <rect key="frame" x="37.5" y="168.5" width="300" height="350"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="3Ma-65-8Ix"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.53155259683098588" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2dr-c9-MdE" firstAttribute="bottom" secondItem="GSK-bk-Sxo" secondAttribute="bottom" id="SkU-FU-k5S"/>
+                            <constraint firstItem="LjX-4h-kbW" firstAttribute="centerY" secondItem="GSK-bk-Sxo" secondAttribute="centerY" id="U4O-nB-xK9"/>
+                            <constraint firstItem="2dr-c9-MdE" firstAttribute="trailing" secondItem="GSK-bk-Sxo" secondAttribute="trailing" id="a9D-Vo-2Yb"/>
+                            <constraint firstItem="2dr-c9-MdE" firstAttribute="top" secondItem="GSK-bk-Sxo" secondAttribute="top" id="hmy-aB-TNY"/>
+                            <constraint firstItem="LjX-4h-kbW" firstAttribute="width" secondItem="GSK-bk-Sxo" secondAttribute="width" multiplier="0.8" id="pMW-xa-aXM"/>
+                            <constraint firstItem="2dr-c9-MdE" firstAttribute="leading" secondItem="GSK-bk-Sxo" secondAttribute="leading" id="pfn-Vu-6Vu"/>
+                            <constraint firstItem="LjX-4h-kbW" firstAttribute="centerX" secondItem="GSK-bk-Sxo" secondAttribute="centerX" id="qj4-NA-loQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GSK-bk-Sxo"/>
                     </view>
                     <connections>
-                        <outlet property="colorPickerView" destination="FYS-Ec-Lq6" id="K7k-fi-0Pa"/>
-                        <segue destination="vgc-XH-o7t" kind="unwind" unwindAction="unwindToEditViewWithSegue:" id="Pn6-k7-FSW"/>
+                        <outlet property="colorPickerView" destination="LjX-4h-kbW" id="fBo-hD-Jaj"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XCJ-Bn-MZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="vgc-XH-o7t" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WVn-Q4-p36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LRy-ic-QLO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="822" y="30"/>
+            <point key="canvasLocation" x="808.79999999999995" y="43.628185907046479"/>
         </scene>
     </scenes>
 </document>

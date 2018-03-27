@@ -22,10 +22,20 @@ class ColorTarget: UIView {
         ctx.setLineWidth(2)
         ctx.addArc(
             center: center,
-            radius: 15,
+            radius: 11,
             startAngle: 0,
             endAngle: CGFloat.pi * 2,
             clockwise: false)
+        
+        ctx.move(to: CGPoint(x: center.x, y: center.y - 12))
+        ctx.addLine(to: CGPoint(x: center.x, y: center.y - 16))
+        ctx.move(to: CGPoint(x: center.x, y: center.y + 12))
+        ctx.addLine(to: CGPoint(x: center.x, y: center.y + 16))
+        ctx.move(to: CGPoint(x: center.x - 12, y: center.y))
+        ctx.addLine(to: CGPoint(x: center.x - 16, y: center.y))
+        ctx.move(to: CGPoint(x: center.x + 12, y: center.y))
+        ctx.addLine(to: CGPoint(x: center.x + 16, y: center.y))
+        
         ctx.strokePath()
     }
 }

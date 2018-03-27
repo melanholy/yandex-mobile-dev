@@ -9,7 +9,7 @@
 import UIKit
 
 class ColorButton: UIButton {
-    public var selectedColor: Bool = false {
+    public var isSelectedColor: Bool = false {
         didSet {
             setNeedsDisplay()
         }
@@ -20,27 +20,12 @@ class ColorButton: UIButton {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.black.cgColor
-    }
-    
     override func draw(_ rect: CGRect) {
         guard let ctx = UIGraphicsGetCurrentContext() else {
             return
         }
         
-        if (selectedColor)
+        if (isSelectedColor)
         {
             let circleCenterX = Int(bounds.size.width - 15)
             let circleCenterY = 15
@@ -58,5 +43,12 @@ class ColorButton: UIButton {
             ctx.addLine(to: CGPoint(x: circleCenterX + 5, y: circleCenterY - 6))
             ctx.strokePath()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.borderWidth = 2
+        self.layer.borderColor = UIColor.black.cgColor
     }
 }

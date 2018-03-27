@@ -13,22 +13,22 @@
 		CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */; };
 		CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A53052054501500B9D1F0 /* LinkedList.swift */; };
 		CC1F1AE1205F79D3000EAB36 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1F1AE0205F79D3000EAB36 /* ColorButton.swift */; };
-		CC2C2BF1205EA83A00B1B347 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C2BEF205EA83A00B1B347 /* EditView.swift */; };
-		CC2C2BF2205EA83A00B1B347 /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC2C2BF0205EA83A00B1B347 /* EditView.xib */; };
 		CC2E4AD2205FBD0000D26059 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2E4AD1205FBD0000D26059 /* ColorPalette.swift */; };
 		CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC383538205522F900C0639E /* FileNotebookBadCpu.swift */; };
+		CC38FFAC2067B1BA00B73105 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC38FFAB2067B1BA00B73105 /* EditViewController.swift */; };
+		CC38FFAE2067B9BA00B73105 /* ColorPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC38FFAD2067B9BA00B73105 /* ColorPaletteView.swift */; };
+		CC38FFB22067C82B00B73105 /* ColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC38FFB02067C82B00B73105 /* ColorPickerView.xib */; };
+		CC38FFB42067D4AE00B73105 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC38FFB32067D4AE00B73105 /* ColorPickerViewController.swift */; };
 		CC3960B92067707700DC6B18 /* RemoveSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3960B82067707700DC6B18 /* RemoveSymbol.swift */; };
 		CC3B118720602AC3002900EF /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118520602AC3002900EF /* ColorPickerView.swift */; };
-		CC3B118820602AC3002900EF /* ColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3B118620602AC3002900EF /* ColorPickerView.xib */; };
 		CC3B118C20603382002900EF /* CurrentColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3B118B20603382002900EF /* CurrentColor.xib */; };
-		CC3B1190206036F0002900EF /* CurrentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118F206036F0002900EF /* CurrentColor.swift */; };
+		CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118F206036F0002900EF /* CurrentColorView.swift */; };
 		CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */; };
 		CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */; };
 		CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */; };
 		CCC11A862066BCAD004D2F00 /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A842066BCAD004D2F00 /* NoteCollectionViewCell.swift */; };
 		CCC11A872066BCAD004D2F00 /* NoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCC11A852066BCAD004D2F00 /* NoteCollectionViewCell.xib */; };
 		CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBA82050362A001114BB /* AppDelegate.swift */; };
-		CE5BDBAB2050362A001114BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BDBAA2050362A001114BB /* ViewController.swift */; };
 		CE5BDBAE2050362A001114BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBAC2050362A001114BB /* Main.storyboard */; };
 		CE5BDBB02050362A001114BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBAF2050362A001114BB /* Assets.xcassets */; };
 		CE5BDBB32050362A001114BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5BDBB12050362A001114BB /* LaunchScreen.storyboard */; };
@@ -59,15 +59,16 @@
 		CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookBadMem.swift; sourceTree = "<group>"; };
 		CC1A53052054501500B9D1F0 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		CC1F1AE0205F79D3000EAB36 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
-		CC2C2BEF205EA83A00B1B347 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
-		CC2C2BF0205EA83A00B1B347 /* EditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
 		CC2E4AD1205FBD0000D26059 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		CC383538205522F900C0639E /* FileNotebookBadCpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookBadCpu.swift; sourceTree = "<group>"; };
+		CC38FFAB2067B1BA00B73105 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		CC38FFAD2067B9BA00B73105 /* ColorPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPaletteView.swift; sourceTree = "<group>"; };
+		CC38FFB02067C82B00B73105 /* ColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerView.xib; sourceTree = "<group>"; };
+		CC38FFB32067D4AE00B73105 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		CC3960B82067707700DC6B18 /* RemoveSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSymbol.swift; sourceTree = "<group>"; };
 		CC3B118520602AC3002900EF /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		CC3B118620602AC3002900EF /* ColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerView.xib; sourceTree = "<group>"; };
 		CC3B118B20603382002900EF /* CurrentColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentColor.xib; sourceTree = "<group>"; };
-		CC3B118F206036F0002900EF /* CurrentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColor.swift; sourceTree = "<group>"; };
+		CC3B118F206036F0002900EF /* CurrentColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColorView.swift; sourceTree = "<group>"; };
 		CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorButton.swift; sourceTree = "<group>"; };
 		CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTarget.swift; sourceTree = "<group>"; };
 		CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		CCC11A852066BCAD004D2F00 /* NoteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE5BDBA52050362A001114BB /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5BDBA82050362A001114BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE5BDBAA2050362A001114BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE5BDBAD2050362A001114BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE5BDBAF2050362A001114BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE5BDBB22050362A001114BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -144,8 +144,7 @@
 		CC3960B520676C1400DC6B18 /* EditView */ = {
 			isa = PBXGroup;
 			children = (
-				CC2C2BEF205EA83A00B1B347 /* EditView.swift */,
-				CC2C2BF0205EA83A00B1B347 /* EditView.xib */,
+				CC38FFAB2067B1BA00B73105 /* EditViewController.swift */,
 				CC1F1AE0205F79D3000EAB36 /* ColorButton.swift */,
 				CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */,
 			);
@@ -157,9 +156,11 @@
 			children = (
 				CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */,
 				CC3B118520602AC3002900EF /* ColorPickerView.swift */,
-				CC3B118620602AC3002900EF /* ColorPickerView.xib */,
+				CC38FFB02067C82B00B73105 /* ColorPickerView.xib */,
 				CC3B118B20603382002900EF /* CurrentColor.xib */,
-				CC3B118F206036F0002900EF /* CurrentColor.swift */,
+				CC3B118F206036F0002900EF /* CurrentColorView.swift */,
+				CC38FFAD2067B9BA00B73105 /* ColorPaletteView.swift */,
+				CC38FFB32067D4AE00B73105 /* ColorPickerViewController.swift */,
 			);
 			path = ColorPicker;
 			sourceTree = "<group>";
@@ -213,7 +214,6 @@
 				CC3960B420676BED00DC6B18 /* NotesList */,
 				CC3F534720554F0E0031D8C6 /* BadNotebooks */,
 				CE5BDBA82050362A001114BB /* AppDelegate.swift */,
-				CE5BDBAA2050362A001114BB /* ViewController.swift */,
 				CE5BDBAC2050362A001114BB /* Main.storyboard */,
 				CE5BDBAF2050362A001114BB /* Assets.xcassets */,
 				CE5BDBB12050362A001114BB /* LaunchScreen.storyboard */,
@@ -322,11 +322,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5BDBB32050362A001114BB /* LaunchScreen.storyboard in Resources */,
-				CC2C2BF2205EA83A00B1B347 /* EditView.xib in Resources */,
 				CE5BDBB02050362A001114BB /* Assets.xcassets in Resources */,
-				CC3B118820602AC3002900EF /* ColorPickerView.xib in Resources */,
 				CCC11A872066BCAD004D2F00 /* NoteCollectionViewCell.xib in Resources */,
 				CE5BDBAE2050362A001114BB /* Main.storyboard in Resources */,
+				CC38FFB22067C82B00B73105 /* ColorPickerView.xib in Resources */,
 				CC3B118C20603382002900EF /* CurrentColor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,20 +448,21 @@
 			files = (
 				CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */,
 				CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */,
+				CC38FFB42067D4AE00B73105 /* ColorPickerViewController.swift in Sources */,
 				CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */,
-				CC2C2BF1205EA83A00B1B347 /* EditView.swift in Sources */,
 				CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */,
-				CE5BDBAB2050362A001114BB /* ViewController.swift in Sources */,
 				CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */,
 				CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */,
+				CC38FFAC2067B1BA00B73105 /* EditViewController.swift in Sources */,
 				CC1F1AE1205F79D3000EAB36 /* ColorButton.swift in Sources */,
-				CC3B1190206036F0002900EF /* CurrentColor.swift in Sources */,
+				CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */,
 				CC3B118720602AC3002900EF /* ColorPickerView.swift in Sources */,
 				CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */,
 				CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */,
 				CE5BDBC920503CBC001114BB /* Note.swift in Sources */,
 				CC3960B92067707700DC6B18 /* RemoveSymbol.swift in Sources */,
 				CCC11A862066BCAD004D2F00 /* NoteCollectionViewCell.swift in Sources */,
+				CC38FFAE2067B9BA00B73105 /* ColorPaletteView.swift in Sources */,
 				CC2E4AD2205FBD0000D26059 /* ColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

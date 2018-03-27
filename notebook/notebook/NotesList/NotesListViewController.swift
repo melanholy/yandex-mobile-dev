@@ -32,7 +32,11 @@ class NotesListViewController: UIViewController {
         super.init(coder: aDecoder)
         
         [1,2,3,4,5,6,7,8,9].forEach {
-            notes.append(Note(title: String($0), content: String($0), importance: Importance.low))
+            notes.append(Note(
+                title: String($0),
+                content: String($0),
+                color: UIColor.cyan,
+                importance: Importance.low))
         }
     }
     
@@ -44,12 +48,12 @@ class NotesListViewController: UIViewController {
         toggleEditMode()
     }
     
-    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+    @IBAction func unwindToNotesList(sender: UIStoryboardSegue) {
         let cellIndex = editingCellIndex
         editingCellIndex = nil
         
-        guard let sourceViewController = sender.source as? ViewController,
-             let note = sourceViewController.editView.getNote()else {
+        guard let sourceViewController = sender.source as? EditViewController,
+             let note = sourceViewController.getNote() else {
             return
         }
         
@@ -69,9 +73,9 @@ class NotesListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditView",
-            let destintaion = segue.destination as? ViewController,
+            let destintaion = segue.destination as? EditViewController,
             let index = editingCellIndex?.item {
-            destintaion.editView.setNote(notes[index])
+            destintaion.setNote(notes[index])
         }
     }
     

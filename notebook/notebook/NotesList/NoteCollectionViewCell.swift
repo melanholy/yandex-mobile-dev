@@ -59,6 +59,7 @@ class NoteCollectionViewCell: UICollectionViewCell {
         textLabel.adjustsFontSizeToFitWidth = false
         textLabel.lineBreakMode = .byTruncatingTail
         
-        editModeOverlay.layer.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).cgColor
+        editModeOverlay.layer.backgroundColor = UIColor(
+            red: 1, green: 0, blue: 0, alpha: 0.5).cgColor
     }
 }

@@ -25,16 +25,19 @@ class ColorPalette {
     
     public func setBrightess(_ brightness: Float) {
         pixelData = getPixelDataWith(brightness: brightness)
+        lastBrightness = brightness
     }
     
     public func getColorAt(x: Int, y: Int) -> UIColor? {
         let width = Int(self.width)
         let origin = pixelData.count - (width * (y + 1) - x) * 4
+        let alpha = pixelData[origin + 3]
+        let whiteComponent = 1 * (1 - alpha)
         return UIColor(
-            red: CGFloat(pixelData[origin]),
-            green: CGFloat(pixelData[origin + 1]),
-            blue: CGFloat(pixelData[origin + 2]),
-            alpha: CGFloat(pixelData[origin + 3]))
+            red: CGFloat(pixelData[origin] + whiteComponent),
+            green: CGFloat(pixelData[origin + 1] + whiteComponent),
+            blue: CGFloat(pixelData[origin + 2] + whiteComponent),
+            alpha: CGFloat(alpha))
     }
     
     public func getImage() -> CGImage? {

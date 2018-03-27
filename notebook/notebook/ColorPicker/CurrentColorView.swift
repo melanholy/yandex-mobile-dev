@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CurrentColor: UIView {
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var contentWrapper: UIView!
-    @IBOutlet weak var hexColor: UILabel!
+class CurrentColorView: UIView {
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var contentWrapper: UIView!
+    @IBOutlet private weak var hexColor: UILabel!
     
     private var selectedColor: UIColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     
@@ -27,25 +27,7 @@ class CurrentColor: UIView {
         setup()
     }
     
-    func setup() {
-        Bundle.main.loadNibNamed("CurrentColor", owner: self, options: nil)
-        self.addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        contentWrapper.layer.borderWidth = 3
-        contentWrapper.layer.borderColor = UIColor.black.cgColor
-        contentWrapper.layer.cornerRadius = 13
-        contentWrapper.clipsToBounds = true
-        
-        hexColor.layer.borderWidth = 1
-        hexColor.layer.borderColor = UIColor.black.cgColor
-        hexColor.backgroundColor = UIColor.white
-        
-        setColor(selectedColor)
-    }
-    
-    func setColor(_ color: UIColor) {
+    public func setColor(_ color: UIColor) {
         selectedColor = color
         
         guard let components = color.cgColor.components else {
@@ -67,5 +49,26 @@ class CurrentColor: UIView {
         
         hexColor.text = "#" + red + green + blue
         contentWrapper.backgroundColor = color
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        contentWrapper.layer.borderWidth = 3
+        contentWrapper.layer.borderColor = UIColor.black.cgColor
+        contentWrapper.layer.cornerRadius = 13
+        contentWrapper.clipsToBounds = true
+        
+        hexColor.layer.borderWidth = 1
+        hexColor.layer.borderColor = UIColor.black.cgColor
+        hexColor.backgroundColor = UIColor.white
+        
+        setColor(selectedColor)
+    }
+    
+    private func setup() {
+        Bundle.main.loadNibNamed("CurrentColor", owner: self, options: nil)
+        self.addSubview(contentView)
+        contentView.frame = self.bounds
     }
 }

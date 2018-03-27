@@ -9,25 +9,16 @@
 import UIKit
 import CocoaLumberjack
 
-@objc protocol ColorPickerViewDeletegate {
-    @objc optional func close(selectedColor: UIColor)
-}
-
 class ColorPickerView: UIView {
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var brightnessSlider: UISlider!
-    @IBOutlet weak var currentColorView: CurrentColor!
-    @IBOutlet weak var colorPaletteView: UIView!
-    @IBOutlet weak var colorTarget: ColorTarget!
-    weak var delegate: ColorPickerViewDeletegate? = nil
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var brightnessSlider: UISlider!
+    @IBOutlet private weak var currentColorView: CurrentColorView!
+    @IBOutlet private weak var colorPaletteView: ColorPaletteView!
+    @IBOutlet private weak var colorTarget: ColorTarget!
+    @IBOutlet private weak var paletteBorderView: UIView!
     
-    private var colorPalette: ColorPalette? = nil
-    private var currentColor: UIColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    public var currentColor: UIColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     private var colorTargetLocation: CGPoint? = nil
-    
-    override open class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +32,12 @@ class ColorPickerView: UIView {
         setup()
     }
     
+    func setup() {
+        Bundle.main.loadNibNamed("ColorPickerView", owner: self, options: nil)
+        self.addSubview(contentView)
+        contentView.frame = self.bounds
+    }
+    
     @IBAction func paletteOnTap(_ gestureRecognizer: UITapGestureRecognizer) {
         let location = gestureRecognizer.location(in: colorPaletteView)
         updateColor(paletteLocation: location)
@@ -51,76 +48,41 @@ class ColorPickerView: UIView {
         updateColor(paletteLocation: location)
     }
     
-    @IBAction func doneButtonDidTap(_ sender: UIButton) {
-        delegate?.close?(selectedColor: currentColor)
-    }
-    
     @IBAction func brightnessValueChanged(_ sender: UISlider) {
-        colorPalette?.setBrightess(brightnessSlider.value)
+        colorPaletteView.setBrightness(brightnessSlider.value)
     }
     
-    override func draw(_ rect: CGRect) {
-        guard let ctx = UIGraphicsGetCurrentContext() else {
-            DDLogError("Failed to get current CGContext in ColorPickerView.draw")
-            return
-        }
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        guard let palette = colorPalette?.getImage() else {
-            return
-        }
+        colorPaletteView.clipsToBounds = true
         
-        ctx.draw(palette, in: CGRect(
-            x: colorPaletteView.frame.origin.x + 2,
-            y: colorPaletteView.frame.origin.y + 2,
-            width: colorPaletteView.frame.width - 4,
-            height: colorPaletteView.frame.height - 4))
-    }
-    
-    override func layoutSubviews() {
-        if (colorPalette == nil) {
-            colorPalette = ColorPalette(
-                width: Float(colorPaletteView.frame.width) - 4,
-                height: Float(colorPaletteView.frame.height) - 4)
-        }
+        paletteBorderView.layer.borderWidth = 2
+        paletteBorderView.layer.borderColor = UIColor.black.cgColor
         
-        if let colorTargetLocation = colorTargetLocation {
-            colorTarget.frame.origin.x = colorTargetLocation.x
-            colorTarget.frame.origin.y = colorTargetLocation.y
-        } else {
-            colorTarget.frame.origin.x = -100
-            colorTarget.frame.origin.y = -100
-        }
+        colorTarget.frame.origin.x = -100
+        colorTarget.frame.origin.y = -100
+        
+        currentColorView.setColor(currentColor)
     }
     
     private func updateColor(paletteLocation: CGPoint) {
-        var x = paletteLocation.x - 2
-        x = min(x, colorPaletteView.frame.width - 5)
+        var x = paletteLocation.x
+        x = min(x, colorPaletteView.frame.width - 1)
         x = max(x, 0)
-        var y = paletteLocation.y - 2
-        y = min(y, colorPaletteView.frame.height - 5)
+        var y = paletteLocation.y
+        y = min(y, colorPaletteView.frame.height - 1)
         y = max(y, 0)
         
-        guard let color = colorPalette?.getColorAt(x: Int(x), y: Int(y)) else {
+        guard let color = colorPaletteView.getColorAt(x: Int(x), y: Int(y)) else {
             DDLogError("Failed to get color from ColorPalette")
             return
         }
         
         currentColor = color
         currentColorView.setColor(color)
-        colorTargetLocation = CGPoint(
-            x: x - colorTarget.frame.width / 2,
-            y: y - colorTarget.frame.height / 2)
-        setNeedsLayout()
-    }
-    
-    private func setup() {
-        Bundle.main.loadNibNamed("ColorPickerView", owner: self, options: nil)
-        self.addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        colorPaletteView.layer.borderColor = UIColor.black.cgColor
-        colorPaletteView.layer.borderWidth = 2
-        colorPaletteView.clipsToBounds = true
+
+        colorTarget.frame.origin.x = x - colorTarget.frame.width / 2
+        colorTarget.frame.origin.y = y - colorTarget.frame.height / 2
     }
 }

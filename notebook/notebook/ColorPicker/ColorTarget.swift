@@ -10,6 +10,12 @@ import UIKit
 import CocoaLumberjack
 
 class ColorTarget: UIView {
+    public var fillColor: CGColor? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         guard let ctx = UIGraphicsGetCurrentContext() else {
             DDLogError("Failed to get current CGContext in ColorTarget.draw")
@@ -26,6 +32,13 @@ class ColorTarget: UIView {
             startAngle: 0,
             endAngle: CGFloat.pi * 2,
             clockwise: false)
+        
+        if let fillColor = fillColor,
+            let arc = ctx.path {
+            ctx.setFillColor(fillColor)
+            ctx.drawPath(using: .fillStroke)
+            ctx.addPath(arc)
+        }
         
         ctx.move(to: CGPoint(x: center.x, y: center.y - 12))
         ctx.addLine(to: CGPoint(x: center.x, y: center.y - 16))

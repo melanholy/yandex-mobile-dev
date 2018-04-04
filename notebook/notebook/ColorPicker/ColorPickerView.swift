@@ -17,16 +17,28 @@ class ColorPickerView: UIView {
     @IBOutlet private weak var colorTarget: ColorTarget!
     @IBOutlet private weak var paletteBorderView: UIView!
     
-    public var currentColor: UIColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    private var colorTargetLocation: CGPoint? = nil
+    public var state: ColorPickerState {
+        didSet {
+            currentColorView.setColor(state.selectedColor)
+            colorPaletteView.setBrightness(state.brightness)
+            brightnessSlider.value = state.brightness
+            if let colorLocation = state.selectedColorLocation {
+                colorTarget.frame.origin.x = colorLocation.x - colorTarget.frame.width / 2
+                colorTarget.frame.origin.y = colorLocation.y - colorTarget.frame.height / 2
+                colorTarget.fillColor = state.selectedColor.cgColor
+            }
+        }
+    }
     
     override init(frame: CGRect) {
+        state = ColorPickerState(color: UIColor(red: 1, green: 1, blue: 1, alpha: 1))
         super.init(frame: frame)
         
         setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        state = ColorPickerState(color: UIColor(red: 1, green: 1, blue: 1, alpha: 1))
         super.init(coder: aDecoder)
         
         setup()
@@ -49,7 +61,13 @@ class ColorPickerView: UIView {
     }
     
     @IBAction func brightnessValueChanged(_ sender: UISlider) {
-        colorPaletteView.setBrightness(brightnessSlider.value)
+        let brightness = brightnessSlider.value
+        colorPaletteView.setBrightness(brightness)
+        state.brightness = brightness
+        
+        if let location = state.selectedColorLocation {
+            updateColor(paletteLocation: location)
+        }
     }
     
     override func awakeFromNib() {
@@ -60,10 +78,12 @@ class ColorPickerView: UIView {
         paletteBorderView.layer.borderWidth = 2
         paletteBorderView.layer.borderColor = UIColor.black.cgColor
         
-        colorTarget.frame.origin.x = -100
-        colorTarget.frame.origin.y = -100
+        if state.selectedColorLocation == nil {
+            colorTarget.frame.origin.x = -100
+            colorTarget.frame.origin.y = -100
+        }
         
-        currentColorView.setColor(currentColor)
+        currentColorView.setColor(state.selectedColor)
     }
     
     private func updateColor(paletteLocation: CGPoint) {
@@ -79,9 +99,11 @@ class ColorPickerView: UIView {
             return
         }
         
-        currentColor = color
+        state.selectedColorLocation = CGPoint(x: x, y: y)
+        state.selectedColor = color
         currentColorView.setColor(color)
-
+        
+        colorTarget.fillColor = state.selectedColor.cgColor
         colorTarget.frame.origin.x = x - colorTarget.frame.width / 2
         colorTarget.frame.origin.y = y - colorTarget.frame.height / 2
     }

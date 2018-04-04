@@ -8,18 +8,29 @@
 
 import UIKit
 
+class ColorPickerState {
+    public var selectedColorLocation: CGPoint? = nil
+    public var selectedColor: UIColor
+    public var brightness: Float
+    
+    public init(color: UIColor, brightness: Float = 1) {
+        self.selectedColor = color
+        self.brightness = brightness
+    }
+}
+
 class ColorPickerViewController: UIViewController {
     @IBOutlet private weak var colorPickerView: ColorPickerView! {
         didSet {
-            if let selectedColor = selectedColor {
-                colorPickerView.currentColor = selectedColor
+            if let state = state {
+                colorPickerView.state = state
             }
         }
     }
     
-    public var selectedColor: UIColor? = nil
+    public var state: ColorPickerState? = nil
     
     @IBAction func dismissDidTap(_ sender: Any) {
-        selectedColor = colorPickerView.currentColor
+        state = colorPickerView.state
     }
 }

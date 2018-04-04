@@ -71,6 +71,10 @@ class NotesListViewController: UIViewController {
         toggleEditMode()
     }
     
+    @objc func addDidTap(_ sender: Any) {
+        performSegue(withIdentifier: "showEditView", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditView",
             let destintaion = segue.destination as? EditViewController,
@@ -132,11 +136,16 @@ class NotesListViewController: UIViewController {
                 barButtonSystemItem: .done,
                 target: self,
                 action: #selector(doneDidTap))
+            navigationItem.rightBarButtonItem = nil
         } else {
             navigationItem.leftBarButtonItem = UIBarButtonItem(
                 barButtonSystemItem: .edit,
                 target: self,
                 action: #selector(editDidTap))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .add,
+                target: self,
+                action: #selector(addDidTap))
         }
     }
 }

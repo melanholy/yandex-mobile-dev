@@ -27,6 +27,7 @@ class EditViewController: UIViewController {
     @IBOutlet private weak var datePickerHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var datePickerAlignConstraint: NSLayoutConstraint!
     @IBOutlet private weak var paletteColorButton: PaletteColorButton!
+    @IBOutlet weak var colorsStackView: UIStackView!
     @IBOutlet private var colorButtons: [ColorButton]!
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
@@ -34,6 +35,7 @@ class EditViewController: UIViewController {
     
     private var keyboardHeight: CGFloat = -1
     private var model: Note?
+    private var colorPickerState: ColorPickerState?
     
     @IBAction func useDestroyDateDidChange() {
         UIView.animate(withDuration: 0.2) {
@@ -59,14 +61,16 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func unwindToEditView(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.source as? ColorPickerViewController,
-            let color = sourceViewController.selectedColor else {
-                return
+        guard let sourceViewController = sender.source as? ColorPickerViewController else {
+            return
         }
         
-        colorButtons.forEach { $0.isSelectedColor = false }
-        paletteColorButton.color = color
-        paletteColorButton.isSelectedColor = true
+        if let state = sourceViewController.state {
+            colorPickerState = state
+            colorButtons.forEach { $0.isSelectedColor = false }
+            paletteColorButton.color = state.selectedColor
+            paletteColorButton.isSelectedColor = true
+        }
     }
     
     override func viewDidLoad() {
@@ -81,6 +85,7 @@ class EditViewController: UIViewController {
             name: .UIKeyboardWillHide,
             object: nil)
         
+        navigationController?.delegate = self
         noteContentTextView.delegate = self
         noteContentTextView.isScrollEnabled = false
         noteTitleTextField.delegate = self
@@ -98,6 +103,7 @@ class EditViewController: UIViewController {
             } else {
                 paletteColorButton.color = model.color
                 paletteColorButton.isSelectedColor = true
+                colorPickerState = ColorPickerState(color: model.color)
             }
         } else {
             colorButtons[0].isSelectedColor = true
@@ -112,7 +118,9 @@ class EditViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showColorPicker",
             let destination = segue.destination as? ColorPickerViewController {
-            destination.selectedColor = paletteColorButton.color
+            if let state = colorPickerState {
+                destination.state = state
+            }
         }
     }
     
@@ -173,5 +181,25 @@ extension EditViewController: UITextFieldDelegate {
 extension EditViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         resizeContent()
+    }
+}
+
+extension EditViewController: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationControllerOperation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let originFrame = CGRect(
+            x: colorsStackView.frame.origin.x + paletteColorButton.frame.origin.x,
+            y: colorsStackView.frame.origin.y + paletteColorButton.frame.origin.y,
+            width: paletteColorButton.frame.width,
+            height: paletteColorButton.frame.height)
+        if operation == .push {
+            return ColorPickerTransition(originFrame: originFrame, isPresenting: true)
+        } else {
+            return ColorPickerTransition(originFrame: originFrame, isPresenting: false)
+        }
     }
 }

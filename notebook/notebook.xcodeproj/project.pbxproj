@@ -23,6 +23,7 @@
 		CC3B118720602AC3002900EF /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118520602AC3002900EF /* ColorPickerView.swift */; };
 		CC3B118C20603382002900EF /* CurrentColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3B118B20603382002900EF /* CurrentColor.xib */; };
 		CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118F206036F0002900EF /* CurrentColorView.swift */; };
+		CC5A81A22071F20000F88107 /* ColorPickerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A81A12071F20000F88107 /* ColorPickerAnimation.swift */; };
 		CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */; };
 		CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */; };
 		CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */; };
@@ -69,6 +70,7 @@
 		CC3B118520602AC3002900EF /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		CC3B118B20603382002900EF /* CurrentColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentColor.xib; sourceTree = "<group>"; };
 		CC3B118F206036F0002900EF /* CurrentColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColorView.swift; sourceTree = "<group>"; };
+		CC5A81A12071F20000F88107 /* ColorPickerAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerAnimation.swift; sourceTree = "<group>"; };
 		CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorButton.swift; sourceTree = "<group>"; };
 		CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTarget.swift; sourceTree = "<group>"; };
 		CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		CC3960B520676C1400DC6B18 /* EditView */ = {
 			isa = PBXGroup;
 			children = (
+				CC5A81A12071F20000F88107 /* ColorPickerAnimation.swift */,
 				CC38FFAB2067B1BA00B73105 /* EditViewController.swift */,
 				CC1F1AE0205F79D3000EAB36 /* ColorButton.swift */,
 				CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */,
@@ -453,6 +456,7 @@
 				CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */,
 				CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */,
 				CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */,
+				CC5A81A22071F20000F88107 /* ColorPickerAnimation.swift in Sources */,
 				CC38FFAC2067B1BA00B73105 /* EditViewController.swift in Sources */,
 				CC1F1AE1205F79D3000EAB36 /* ColorButton.swift in Sources */,
 				CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */,

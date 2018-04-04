@@ -10,9 +10,11 @@ import UIKit
 import CocoaLumberjack
 
 class ColorPaletteView: UIView {
-    private var colorPalette: ColorPalette? = nil
+    private var colorPalette: ColorPalette?
+    private var currentBrightness: Float?
     
     public func setBrightness(_ brightness: Float) {
+        currentBrightness = brightness
         colorPalette?.setBrightess(brightness)
         setNeedsDisplay()
     }
@@ -25,6 +27,9 @@ class ColorPaletteView: UIView {
         colorPalette = ColorPalette(
             width: Float(frame.width),
             height: Float(frame.height))
+        if let brightness = currentBrightness {
+            colorPalette?.setBrightess(brightness)
+        }
     }
     
     override func draw(_ rect: CGRect) {

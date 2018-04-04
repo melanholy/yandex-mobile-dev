@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerState {
+class ColorPickerState: NSObject {
     public var selectedColorLocation: CGPoint? = nil
     public var selectedColor: UIColor
     public var brightness: Float
@@ -28,9 +28,15 @@ class ColorPickerViewController: UIViewController {
         }
     }
     
+    public weak var delegate: ColorPickerViewControllerDelegate?
     public var state: ColorPickerState? = nil
     
     @IBAction func dismissDidTap(_ sender: Any) {
-        state = colorPickerView.state
+        dismiss(animated: true, completion: nil)
+        delegate?.didDismiss?(state: colorPickerView.state)
     }
+}
+
+@objc protocol ColorPickerViewControllerDelegate {
+    @objc optional func didDismiss(state: ColorPickerState)
 }

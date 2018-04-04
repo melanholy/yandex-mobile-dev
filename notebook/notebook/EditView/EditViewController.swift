@@ -56,20 +56,18 @@ class EditViewController: UIViewController {
     
     @IBAction func longPressLongPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            performSegue(withIdentifier: "showColorPicker", sender: self)
-        }
-    }
-    
-    @IBAction func unwindToEditView(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.source as? ColorPickerViewController else {
-            return
-        }
-        
-        if let state = sourceViewController.state {
-            colorPickerState = state
-            colorButtons.forEach { $0.isSelectedColor = false }
-            paletteColorButton.color = state.selectedColor
-            paletteColorButton.isSelectedColor = true
+            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ColorPickerViewController") as? ColorPickerViewController else {
+                return
+            }
+            
+            viewController.delegate = self
+            viewController.transitioningDelegate = self
+            viewController.modalPresentationStyle = .overCurrentContext
+            if let state = colorPickerState {
+                viewController.state = state
+            }
+            
+            present(viewController, animated: true, completion: nil)
         }
     }
     
@@ -85,7 +83,6 @@ class EditViewController: UIViewController {
             name: .UIKeyboardWillHide,
             object: nil)
         
-        navigationController?.delegate = self
         noteContentTextView.delegate = self
         noteContentTextView.isScrollEnabled = false
         noteTitleTextField.delegate = self
@@ -113,15 +110,6 @@ class EditViewController: UIViewController {
         datePickerAlignConstraint.constant = destroyDateSwitch.isOn ? 0 : datePickerHeight / 2
         
         resizeContent()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showColorPicker",
-            let destination = segue.destination as? ColorPickerViewController {
-            if let state = colorPickerState {
-                destination.state = state
-            }
-        }
     }
     
     public func getNote() -> Note? {
@@ -184,22 +172,23 @@ extension EditViewController: UITextViewDelegate {
     }
 }
 
-extension EditViewController: UINavigationControllerDelegate {
-    func navigationController(
-        _ navigationController: UINavigationController,
-        animationControllerFor operation: UINavigationControllerOperation,
-        from fromVC: UIViewController,
-        to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+extension EditViewController: ColorPickerViewControllerDelegate {
+    func didDismiss(state: ColorPickerState) {
+        colorPickerState = state
+        colorButtons.forEach { $0.isSelectedColor = false }
+        paletteColorButton.color = state.selectedColor
+        paletteColorButton.isSelectedColor = true
+    }
+}
+
+extension EditViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let originFrame = CGRect(
             x: colorsStackView.frame.origin.x + paletteColorButton.frame.origin.x,
             y: colorsStackView.frame.origin.y + paletteColorButton.frame.origin.y,
             width: paletteColorButton.frame.width,
             height: paletteColorButton.frame.height)
-        if operation == .push {
-            return ColorPickerTransition(originFrame: originFrame, isPresenting: true)
-        } else {
-            return ColorPickerTransition(originFrame: originFrame, isPresenting: false)
-        }
+        
+        return ColorPickerTransition(originFrame: originFrame, isPresenting: true)
     }
 }

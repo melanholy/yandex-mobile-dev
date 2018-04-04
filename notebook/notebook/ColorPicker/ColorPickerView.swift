@@ -103,7 +103,13 @@ class ColorPickerView: UIView {
         state.selectedColor = color
         currentColorView.setColor(color)
         
-        colorTarget.fillColor = state.selectedColor.cgColor
+        if let selectedColorComponents = state.selectedColor.cgColor.components {
+            colorTarget.fillColor = UIColor(
+                red: selectedColorComponents[0],
+                green: selectedColorComponents[1],
+                blue: selectedColorComponents[2],
+                alpha: 1).cgColor
+        }
         colorTarget.frame.origin.x = x - colorTarget.frame.width / 2
         colorTarget.frame.origin.y = y - colorTarget.frame.height / 2
     }

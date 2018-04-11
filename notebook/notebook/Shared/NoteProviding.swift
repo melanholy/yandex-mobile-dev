@@ -12,6 +12,6 @@ protocol NoteProviding: class {
     func getAll(callback: @escaping ([String: Note]?) -> Void)
     func save(callback: (() -> Void)?)
     func getNote(withUid uid: String, callback: @escaping (Note?) -> Void)
-    func save(_ note: Note, callback: (() -> Void)?)
+    func saveNote(_ note: Note, callback: (() -> Void)?)
     func removeNote(withUid uid: String, callback: (() -> Void)?)
 }

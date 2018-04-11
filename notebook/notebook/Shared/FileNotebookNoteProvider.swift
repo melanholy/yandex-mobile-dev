@@ -37,7 +37,7 @@ class FileNotebookNoteProvider: NoteProviding {
         operationsDispatcher.add(operation, withType: .file)
     }
     
-    func save(_ note: Note, callback: (() -> Void)?) {
+    func saveNote(_ note: Note, callback: (() -> Void)?) {
         let operation = operationsFactory.buildSaveNoteOperation(note: note)
         operation.onSuccess = callback
         operationsDispatcher.add(operation, withType: .file)

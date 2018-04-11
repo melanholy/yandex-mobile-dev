@@ -16,7 +16,7 @@ class NotesListViewController: UIViewController {
     @IBOutlet private weak var notesCollectionView: UICollectionView!
     @IBOutlet private weak var elementWidthSlider: UISlider!
     
-    public weak var notesProvider: NoteProviding!
+    public var notesProvider: NoteProviding!
     
     private let oneInRowLayout: UICollectionViewFlowLayout
     private let twoInRowLayout: UICollectionViewFlowLayout
@@ -32,14 +32,6 @@ class NotesListViewController: UIViewController {
         self.notes = [Note]()
         
         super.init(coder: aDecoder)
-        
-        [1,2,3,4,5,6,7,8,9].forEach {
-            notes.append(Note(
-                title: String($0),
-                content: String($0),
-                color: UIColor.cyan,
-                importance: Importance.low))
-        }
     }
     
     @IBAction func elementWidthSliderValueChanged(_ slider: UISlider) {
@@ -67,27 +59,35 @@ class NotesListViewController: UIViewController {
             let index = IndexPath(item: notes.count - 1, section: 0)
             notesCollectionView.insertItems(at: [index])
         }
+        
+        notesProvider.saveNote(note, callback: nil)
     }
     
     @objc func doneDidTap(_ sender: Any) {
         toggleEditMode()
     }
-    
-    @objc func addDidTap(_ sender: Any) {
+
+    @IBAction func addDidTap(_ sender: Any) {
         performSegue(withIdentifier: "showEditView", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEditView",
+        guard segue.identifier == "showEditView",
             let destintaion = segue.destination as? EditViewController,
-            let index = editingCellIndex?.item {
-            destintaion.setNote(notes[index])
+            let index = editingCellIndex?.item else {
+            return
         }
+        
+        destintaion.setNote(notes[index])
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         notesCollectionView.dataSource = self
-        notesCollectionView.register(UINib(nibName: "NoteCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: noteCellIdentifier)
+        notesCollectionView.register(
+            UINib(nibName: "NoteCollectionViewCell", bundle: Bundle.main),
+            forCellWithReuseIdentifier: noteCellIdentifier)
         
         [oneInRowLayout, twoInRowLayout, threeInRowLayout].forEach {
             $0.sectionInset.bottom = collectionSectionInset
@@ -105,6 +105,19 @@ class NotesListViewController: UIViewController {
             height: collectionRowHeight)
         
         setCellsLayout()
+        
+        notesProvider.getAll { (notes) in
+            if let notes = notes {
+                self.notes = Array(notes.values)
+                DispatchQueue.main.async { [unowned self] in
+                    self.notesCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        notesProvider.save(callback: nil)
     }
     
     private func setCellsLayout() {
@@ -132,7 +145,7 @@ class NotesListViewController: UIViewController {
     
     private func toggleEditMode() {
         editMode = !editMode
-        notesCollectionView.reloadData()
+        notesCollectionView.reloadItems(at: notesCollectionView.indexPathsForVisibleItems)
         if (editMode) {
             navigationItem.leftBarButtonItem = UIBarButtonItem(
                 barButtonSystemItem: .done,
@@ -177,11 +190,13 @@ extension NotesListViewController: UICollectionViewDataSource {
 extension NotesListViewController: NoteCollectionViewCellDeletgate {
     func didTap(indexPath: IndexPath) {
         if (editMode) {
-            notes.remove(at: indexPath.item)
+            let deletedNote = notes.remove(at: indexPath.item)
+            notesProvider.removeNote(withUid: deletedNote.uid, callback: nil)
             notesCollectionView.performBatchUpdates({
                 notesCollectionView.deleteItems(at: [indexPath])
             }, completion: { (finished) in
-                self.notesCollectionView.reloadItems(at: self.notesCollectionView.indexPathsForVisibleItems)
+                self.notesCollectionView.reloadItems(
+                    at: self.notesCollectionView.indexPathsForVisibleItems)
             })
         } else {
             editingCellIndex = indexPath

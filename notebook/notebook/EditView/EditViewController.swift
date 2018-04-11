@@ -182,13 +182,14 @@ extension EditViewController: ColorPickerViewControllerDelegate {
 }
 
 extension EditViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let originFrame = CGRect(
-            x: colorsStackView.frame.origin.x + paletteColorButton.frame.origin.x,
-            y: colorsStackView.frame.origin.y + paletteColorButton.frame.origin.y,
-            width: paletteColorButton.frame.width,
-            height: paletteColorButton.frame.height)
-        
-        return ColorPickerTransition(originFrame: originFrame, isPresenting: true)
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ColorPickerTransition(isPresenting: true)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ColorPickerTransition(isPresenting: false)
     }
 }

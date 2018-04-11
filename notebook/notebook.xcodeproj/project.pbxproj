@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1913FB1AAB0BEF408E686EF7 /* Pods_notebook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1670D92ED535413AE9B6D79C /* Pods_notebook.framework */; };
 		84C70BBE6E8AEB6D8EB35540 /* Pods_notebookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FF561E0FC1A0C3618DE177 /* Pods_notebookTests.framework */; };
+		CC025020207B7C1F00C63A2F /* NotePostOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02501F207B7C1F00C63A2F /* NotePostOperations.swift */; };
+		CC025022207B842C00C63A2F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC025021207B842C00C63A2F /* Extensions.swift */; };
 		CC09B6BA2054ECCE00D5139F /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC09B6B92054ECCE00D5139F /* LinkedListTests.swift */; };
 		CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */; };
 		CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1A53052054501500B9D1F0 /* LinkedList.swift */; };
@@ -24,6 +26,13 @@
 		CC3B118C20603382002900EF /* CurrentColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3B118B20603382002900EF /* CurrentColor.xib */; };
 		CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118F206036F0002900EF /* CurrentColorView.swift */; };
 		CC5A81A22071F20000F88107 /* ColorPickerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A81A12071F20000F88107 /* ColorPickerAnimation.swift */; };
+		CC867164207A3B01003D41F4 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867163207A3B01003D41F4 /* AsyncOperation.swift */; };
+		CC867166207A3FC4003D41F4 /* NoteProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867165207A3FC4003D41F4 /* NoteProviding.swift */; };
+		CC867168207A47CF003D41F4 /* OperationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867167207A47CF003D41F4 /* OperationDispatcher.swift */; };
+		CC86716A207A52BE003D41F4 /* FileNotebookNoteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867169207A52BE003D41F4 /* FileNotebookNoteProvider.swift */; };
+		CC86716C207A557A003D41F4 /* NotePosting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC86716B207A557A003D41F4 /* NotePosting.swift */; };
+		CC86716E207A5600003D41F4 /* VkNotePoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC86716D207A5600003D41F4 /* VkNotePoster.swift */; };
+		CC867170207A60EB003D41F4 /* NoteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC86716F207A60EB003D41F4 /* NoteOperations.swift */; };
 		CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */; };
 		CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */; };
 		CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */; };
@@ -56,6 +65,8 @@
 		6AA50D76DA8E361F8883F0EA /* Pods-notebookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E3633ADB4CBF6C23EC2F056 /* Pods-notebookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3844CB334272EB011DED259 /* Pods-notebookTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notebookTests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-notebookTests/Pods-notebookTests.testflight.xcconfig"; sourceTree = "<group>"; };
+		CC02501F207B7C1F00C63A2F /* NotePostOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePostOperations.swift; sourceTree = "<group>"; };
+		CC025021207B842C00C63A2F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CC09B6B92054ECCE00D5139F /* LinkedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListTests.swift; sourceTree = "<group>"; };
 		CC1A530320544FF000B9D1F0 /* FileNotebookBadMem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookBadMem.swift; sourceTree = "<group>"; };
 		CC1A53052054501500B9D1F0 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
@@ -71,6 +82,13 @@
 		CC3B118B20603382002900EF /* CurrentColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentColor.xib; sourceTree = "<group>"; };
 		CC3B118F206036F0002900EF /* CurrentColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColorView.swift; sourceTree = "<group>"; };
 		CC5A81A12071F20000F88107 /* ColorPickerAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerAnimation.swift; sourceTree = "<group>"; };
+		CC867163207A3B01003D41F4 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		CC867165207A3FC4003D41F4 /* NoteProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProviding.swift; sourceTree = "<group>"; };
+		CC867167207A47CF003D41F4 /* OperationDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDispatcher.swift; sourceTree = "<group>"; };
+		CC867169207A52BE003D41F4 /* FileNotebookNoteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebookNoteProvider.swift; sourceTree = "<group>"; };
+		CC86716B207A557A003D41F4 /* NotePosting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePosting.swift; sourceTree = "<group>"; };
+		CC86716D207A5600003D41F4 /* VkNotePoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkNotePoster.swift; sourceTree = "<group>"; };
+		CC86716F207A60EB003D41F4 /* NoteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteOperations.swift; sourceTree = "<group>"; };
 		CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorButton.swift; sourceTree = "<group>"; };
 		CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTarget.swift; sourceTree = "<group>"; };
 		CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +192,15 @@
 				CE5BDBC820503CBC001114BB /* Note.swift */,
 				CE5BDBCA20503D07001114BB /* FileNotebook.swift */,
 				CC2E4AD1205FBD0000D26059 /* ColorPalette.swift */,
+				CC867163207A3B01003D41F4 /* AsyncOperation.swift */,
+				CC867167207A47CF003D41F4 /* OperationDispatcher.swift */,
+				CC867165207A3FC4003D41F4 /* NoteProviding.swift */,
+				CC867169207A52BE003D41F4 /* FileNotebookNoteProvider.swift */,
+				CC86716B207A557A003D41F4 /* NotePosting.swift */,
+				CC86716D207A5600003D41F4 /* VkNotePoster.swift */,
+				CC86716F207A60EB003D41F4 /* NoteOperations.swift */,
+				CC02501F207B7C1F00C63A2F /* NotePostOperations.swift */,
+				CC025021207B842C00C63A2F /* Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -452,11 +479,13 @@
 				CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */,
 				CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */,
 				CC38FFB42067D4AE00B73105 /* ColorPickerViewController.swift in Sources */,
+				CC867170207A60EB003D41F4 /* NoteOperations.swift in Sources */,
 				CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */,
 				CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */,
 				CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */,
 				CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */,
 				CC5A81A22071F20000F88107 /* ColorPickerAnimation.swift in Sources */,
+				CC867166207A3FC4003D41F4 /* NoteProviding.swift in Sources */,
 				CC38FFAC2067B1BA00B73105 /* EditViewController.swift in Sources */,
 				CC1F1AE1205F79D3000EAB36 /* ColorButton.swift in Sources */,
 				CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */,
@@ -466,8 +495,15 @@
 				CE5BDBC920503CBC001114BB /* Note.swift in Sources */,
 				CC3960B92067707700DC6B18 /* RemoveSymbol.swift in Sources */,
 				CCC11A862066BCAD004D2F00 /* NoteCollectionViewCell.swift in Sources */,
+				CC86716E207A5600003D41F4 /* VkNotePoster.swift in Sources */,
+				CC867168207A47CF003D41F4 /* OperationDispatcher.swift in Sources */,
 				CC38FFAE2067B9BA00B73105 /* ColorPaletteView.swift in Sources */,
+				CC025020207B7C1F00C63A2F /* NotePostOperations.swift in Sources */,
+				CC867164207A3B01003D41F4 /* AsyncOperation.swift in Sources */,
 				CC2E4AD2205FBD0000D26059 /* ColorPalette.swift in Sources */,
+				CC86716C207A557A003D41F4 /* NotePosting.swift in Sources */,
+				CC86716A207A52BE003D41F4 /* FileNotebookNoteProvider.swift in Sources */,
+				CC025022207B842C00C63A2F /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

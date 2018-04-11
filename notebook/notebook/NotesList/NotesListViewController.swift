@@ -16,6 +16,8 @@ class NotesListViewController: UIViewController {
     @IBOutlet private weak var notesCollectionView: UICollectionView!
     @IBOutlet private weak var elementWidthSlider: UISlider!
     
+    public weak var notesProvider: NoteProviding!
+    
     private let oneInRowLayout: UICollectionViewFlowLayout
     private let twoInRowLayout: UICollectionViewFlowLayout
     private let threeInRowLayout: UICollectionViewFlowLayout

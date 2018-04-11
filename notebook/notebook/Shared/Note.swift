@@ -69,9 +69,13 @@ extension Note {
     static func parse(json: [String: Any]) -> Note? {
         guard let uid = json["uid"] as? String,
             let title = json["title"] as? String,
-            let content = json["content"] as? String,
-            let relevantTo = json["relevantTo"] as? TimeInterval else {
+            let content = json["content"] as? String else {
                 return nil
+        }
+        
+        var relevantTo: Date? = nil
+        if let relevantToEntry = json["relevantTo"] as? TimeInterval {
+            relevantTo = Date(timeIntervalSince1970: relevantToEntry)
         }
         
         let importanceEntry = json["importance"] as? Int
@@ -105,6 +109,6 @@ extension Note {
             content: content,
             color: color,
             importance: importance,
-            relevantTo: Date(timeIntervalSince1970: relevantTo))
+            relevantTo: relevantTo)
     }
 }

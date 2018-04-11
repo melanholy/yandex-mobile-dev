@@ -44,6 +44,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
         
+        let dispatcher = OperationDispatcher()
+        let asyncFileNotebook = FileNotebook()
+        let noteOperationsFactory = NoteOperationsFactory(fileNotebook: asyncFileNotebook)
+        let noteProvider = FileNotebookNoteProvider(
+            noteOperationsFactory: noteOperationsFactory,
+            operationsDispatcher: dispatcher)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let navigation = storyboard.instantiateInitialViewController() as? UINavigationController,
+            let notesList = storyboard.instantiateViewController(
+                withIdentifier: "NotesListViewController") as? NotesListViewController else {
+            return false
+        }
+        
+        notesList.notesProvider = noteProvider
+        
+        navigation.pushViewController(notesList, animated: false)
+        window = UIWindow()
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

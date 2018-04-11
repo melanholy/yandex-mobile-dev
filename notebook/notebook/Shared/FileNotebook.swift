@@ -46,6 +46,20 @@ class FileNotebook {
     }
     
     @discardableResult
+    func update(_ note: Note) -> Bool {
+        if notes[note.uid] == nil {
+            DDLogInfo("Failed to update note: note with uid=\(note.uid) doesn't exists")
+            
+            return false
+        }
+        
+        notes[note.uid] = note
+        DDLogInfo("Updated note with uid=\(note.uid)")
+        
+        return true
+    }
+    
+    @discardableResult
     func removeNote(withUid uid: String) -> Bool {
         if notes[uid] == nil {
             DDLogInfo("Failed to remove note: note with uid=\(uid) doesn't exists")

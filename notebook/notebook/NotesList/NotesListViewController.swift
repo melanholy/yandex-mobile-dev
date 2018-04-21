@@ -18,21 +18,12 @@ class NotesListViewController: UIViewController {
     
     public var notesProvider: NoteProviding!
     
-    private let oneInRowLayout: UICollectionViewFlowLayout
-    private let twoInRowLayout: UICollectionViewFlowLayout
-    private let threeInRowLayout: UICollectionViewFlowLayout
+    private let oneInRowLayout = UICollectionViewFlowLayout()
+    private let twoInRowLayout = UICollectionViewFlowLayout()
+    private let threeInRowLayout = UICollectionViewFlowLayout()
     private var editMode = false
-    private var notes: [Note]
+    private var notes = [Note]()
     private var editingCellIndex: IndexPath?
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.oneInRowLayout = UICollectionViewFlowLayout()
-        self.twoInRowLayout = UICollectionViewFlowLayout()
-        self.threeInRowLayout = UICollectionViewFlowLayout()
-        self.notes = [Note]()
-        
-        super.init(coder: aDecoder)
-    }
     
     @IBAction func elementWidthSliderValueChanged(_ slider: UISlider) {
         setCellsLayout()
@@ -114,10 +105,6 @@ class NotesListViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        notesProvider.save(callback: nil)
     }
     
     private func setCellsLayout() {

@@ -33,37 +33,60 @@ struct RGBAFloat {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigation: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
         DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
         
+        let a = UIColor.parseFromHex(string: "#0AffA0")
+        
         let fileLogger: DDFileLogger = DDFileLogger()
         fileLogger.rollingFrequency = TimeInterval(60*60*24)
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
         
+        window = UIWindow()
+        window?.rootViewController = AuthViewController()
+        window?.makeKeyAndVisible()
+        
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        guard let host = URL(string: "http://notes.mrdekk.ru") else {
+            return false
+        }
+        
+        let urlString = url.absoluteString.removingPercentEncoding
+        guard let hashToQuery = urlString?.replacingOccurrences(of: "#", with: "?", options: .caseInsensitive, range: urlString?.range(of: "#")),
+            let components = URLComponents(string: hashToQuery),
+            let token = (components.queryItems?.first { $0.name == "access_token" })?.value else {
+            return false
+        }
+        
         let dispatcher = OperationDispatcher()
         let asyncFileNotebook = FileNotebook()
-        let noteOperationsFactory = NoteOperationsFactory(fileNotebook: asyncFileNotebook)
-        let noteProvider = FileNotebookNoteProvider(
+        let api = Api(host: host, authToken: token)
+        let noteOperationsFactory = NoteOperationsFactory(fileNotebook: asyncFileNotebook, api: api)
+        let noteProvider = NoteProvider(
             noteOperationsFactory: noteOperationsFactory,
             operationsDispatcher: dispatcher)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let navigation = storyboard.instantiateInitialViewController() as? UINavigationController,
+        navigation = storyboard.instantiateInitialViewController() as? UINavigationController
+        guard let navigation = navigation,
             let notesList = storyboard.instantiateViewController(
                 withIdentifier: "NotesListViewController") as? NotesListViewController else {
-            return false
+                    return false
         }
         
         notesList.notesProvider = noteProvider
         
         navigation.pushViewController(notesList, animated: false)
-        window = UIWindow()
+        
         window?.rootViewController = navigation
-        window?.makeKeyAndVisible()
         
         return true
     }
@@ -89,7 +112,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

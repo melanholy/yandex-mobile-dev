@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FileNotebookNoteProvider: NoteProviding {
+class NoteProvider: NoteProviding {
     private let operationsFactory: NoteOperationsFactory
     private let operationsDispatcher: OperationDispatcher
     

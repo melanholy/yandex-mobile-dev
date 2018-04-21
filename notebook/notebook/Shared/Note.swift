@@ -14,13 +14,15 @@ enum Importance: Int {
     case high
 }
 
+private let whiteColorSerialized = "#ffffff"
+
 struct Note {
     let uid: String
     let title: String
     let content: String
     let color: UIColor
     let importance: Importance
-    let relevantTo: Date?
+    let destroyDate: Date?
     
     init(uid: String = UUID().uuidString,
          title: String,
@@ -33,11 +35,11 @@ struct Note {
         self.content = content
         self.color = color
         self.importance = importance
-        self.relevantTo = relevantTo
+        self.destroyDate = relevantTo
     }
     
     func isRelevant() -> Bool {
-        return relevantTo == nil ? true : Date() < relevantTo!
+        return destroyDate == nil ? true : Date() < destroyDate!
     }
 }
 
@@ -50,18 +52,18 @@ extension Note {
                 "content": content
             ]
             
-            if let relevantTo = relevantTo {
-                result["relevantTo"] = relevantTo.timeIntervalSince1970
+            if let relevantTo = destroyDate {
+                result["destroy_date"] = Int(relevantTo.timeIntervalSince1970)
             }
             
             if importance != Importance.common {
                 result["importance"] = importance.rawValue
             }
             
-            if color != UIColor.white {
-                result["color"] = color.cgColor.components
+            if let hexColor = color.toHexString(), hexColor != whiteColorSerialized {
+                result["color"] = hexColor
             }
-            
+
             return result
         }
     }
@@ -74,8 +76,8 @@ extension Note {
         }
         
         var relevantTo: Date? = nil
-        if let relevantToEntry = json["relevantTo"] as? TimeInterval {
-            relevantTo = Date(timeIntervalSince1970: relevantToEntry)
+        if let destroyDateEntry = json["destroy_date"] as? TimeInterval {
+            relevantTo = Date(timeIntervalSince1970: destroyDateEntry)
         }
         
         let importanceEntry = json["importance"] as? Int
@@ -87,20 +89,16 @@ extension Note {
             importance = value
         }
         
-        let colorEntry = json["color"] as? [CGFloat]
-        var color = UIColor.white
+        let colorEntry = json["color"] as? String
+        let color: UIColor
         if let colorEntry = colorEntry {
-            if colorEntry.count == 2 {
-                color = UIColor(white: colorEntry[0], alpha: colorEntry[1])
-            } else if colorEntry.count == 4 {
-                color = UIColor(
-                    red: colorEntry[0],
-                    green: colorEntry[1],
-                    blue: colorEntry[2],
-                    alpha: colorEntry[3])
-            } else {
+            guard let parsed = UIColor.parseFromHex(string: colorEntry) else {
                 return nil
             }
+            
+            color = parsed
+        } else {
+            color = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         }
         
         return Note(

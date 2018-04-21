@@ -56,7 +56,7 @@ class FileNotebookBadCpu {
     }
     
     func save() throws {
-        guard let filePath = FileNotebook.filePath else {
+        guard let filePath = FileNotebookBadCpu.filePath else {
             DDLogError("Failed to get path for saving")
             
             return
@@ -76,7 +76,7 @@ class FileNotebookBadCpu {
     }
     
     func load() throws {
-        guard let filePath = FileNotebook.filePath else {
+        guard let filePath = FileNotebookBadCpu.filePath else {
             DDLogError("Failed to get path for loading")
             
             return

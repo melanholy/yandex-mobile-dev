@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import CocoaLumberjack
 
 class NoteOperationsFactory {
     private let fileNotebook: FileNotebook
+    private let api: Api
     
-    init(fileNotebook: FileNotebook) {
+    init(fileNotebook: FileNotebook, api: Api) {
         self.fileNotebook = fileNotebook
+        self.api = api
     }
     
     func buildGetNotesOperation() -> GetNotesOperation {
-        return GetNotesOperation(fileNotebook: fileNotebook)
+        return GetNotesOperation(fileNotebook: fileNotebook, api: api)
     }
     
     func buildSaveNotesOperation() -> SaveNotesOperation {
@@ -24,15 +27,15 @@ class NoteOperationsFactory {
     }
     
     func buildGetNoteOperation(noteUid: String) -> GetNoteOperation {
-        return GetNoteOperation(fileNotebook: fileNotebook, noteUid: noteUid)
+        return GetNoteOperation(fileNotebook: fileNotebook, api: api, noteUid: noteUid)
     }
     
     func buildSaveNoteOperation(note: Note) -> SaveNoteOperation {
-        return SaveNoteOperation(fileNotebook: fileNotebook, note: note)
+        return SaveNoteOperation(fileNotebook: fileNotebook, api: api, note: note)
     }
     
     func buildRemoveNoteOperation(noteUid: String) -> RemoveNoteOperation {
-        return RemoveNoteOperation(fileNotebook: fileNotebook, noteUid: noteUid)
+        return RemoveNoteOperation(fileNotebook: fileNotebook, api: api, noteUid: noteUid)
     }
 }
 
@@ -40,23 +43,28 @@ class GetNotesOperation: AsyncOperation {
     public var onSuccess: (([String: Note]?) -> Void)?
     
     private let fileNotebook: FileNotebook
+    private let api: Api
     
-    init(fileNotebook: FileNotebook) {
+    init(fileNotebook: FileNotebook, api: Api) {
         self.fileNotebook = fileNotebook
+        self.api = api
     }
     
     override func main() {
-        var notes: [String: Note]?
-        do {
-            try fileNotebook.load()
-            notes = fileNotebook.notes
-        } catch {
-            notes = nil
+        api.getNotes { (notes) in
+            defer {
+                self.onSuccess?(self.fileNotebook.notes)
+                self.finish()
+            }
+            
+            guard let notes = notes else {
+                try? self.fileNotebook.load()
+                return
+            }
+            
+            self.fileNotebook.replace(notes: notes)
+            try? self.fileNotebook.save()
         }
-        
-        finish()
-        
-        onSuccess?(notes)
     }
 }
 
@@ -82,19 +90,28 @@ class GetNoteOperation: AsyncOperation {
     public var onSuccess: ((Note?) -> Void)?
     
     private let fileNotebook: FileNotebook
+    private let api: Api
     private let noteUid: String
     
-    init(fileNotebook: FileNotebook, noteUid: String) {
+    init(fileNotebook: FileNotebook, api: Api, noteUid: String) {
         self.fileNotebook = fileNotebook
+        self.api = api
         self.noteUid = noteUid
     }
     
     override func main() {
-        let note = fileNotebook.notes[noteUid]
-        
-        finish()
-        
-        onSuccess?(note)
+        api.getNote(withUid: noteUid) { (note) in
+            defer {
+                self.onSuccess?(self.fileNotebook.notes[self.noteUid])
+                self.finish()
+            }
+            
+            guard let note = note else {
+                return
+            }
+            
+            self.fileNotebook.add(note) || self.fileNotebook.update(note)
+        }
     }
 }
 
@@ -102,21 +119,26 @@ class SaveNoteOperation: AsyncOperation {
     public var onSuccess: (() -> Void)?
     
     private let fileNotebook: FileNotebook
+    private let api: Api
     private let note: Note
     
-    init(fileNotebook: FileNotebook, note: Note) {
+    init(fileNotebook: FileNotebook, api: Api, note: Note) {
         self.fileNotebook = fileNotebook
+        self.api = api
         self.note = note
     }
     
     override func main() {
+        var exists = false
         if !fileNotebook.add(note) {
+            exists = true
             fileNotebook.update(note)
         }
         
-        finish()
-        
-        onSuccess?()
+        api.save(note: note, exists: exists) {
+            self.onSuccess?()
+            self.finish()
+        }
     }
 }
 
@@ -124,18 +146,20 @@ class RemoveNoteOperation: AsyncOperation {
     public var onSuccess: (() -> Void)?
     
     private let fileNotebook: FileNotebook
+    private let api: Api
     private let noteUid: String
     
-    init(fileNotebook: FileNotebook, noteUid: String) {
+    init(fileNotebook: FileNotebook, api: Api, noteUid: String) {
         self.fileNotebook = fileNotebook
+        self.api = api
         self.noteUid = noteUid
     }
     
     override func main() {
         fileNotebook.removeNote(withUid: noteUid)
-        
-        finish()
-        
-        onSuccess?()
+        api.removeNote(withUid: noteUid) {
+            self.onSuccess?()
+            self.finish()
+        }
     }
 }

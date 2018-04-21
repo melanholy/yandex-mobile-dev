@@ -90,7 +90,7 @@ class EditViewController: UIViewController {
         if let model = model {
             noteTitleTextField.text = model.title
             noteContentTextView.text = model.content
-            if let destroyDate = model.relevantTo {
+            if let destroyDate = model.destroyDate {
                 destroyDateSwitch.isOn = true
                 destroyDatePicker.date = destroyDate
             }
@@ -119,12 +119,22 @@ class EditViewController: UIViewController {
                 return nil
         }
         
-        return Note(
-            title: title,
-            content: content,
-            color: color,
-            importance: Importance.common,
-            relevantTo: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
+        if let note = model {
+            return Note(
+                uid: note.uid,
+                title: title,
+                content: content,
+                color: color,
+                importance: note.importance,
+                relevantTo: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
+        } else {
+            return Note(
+                title: title,
+                content: content,
+                color: color,
+                importance: Importance.common,
+                relevantTo: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
+        }
     }
     
     public func setNote(_ note: Note) {

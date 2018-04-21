@@ -30,25 +30,13 @@ class CurrentColorView: UIView {
     public func setColor(_ color: UIColor) {
         selectedColor = color
         
-        guard let components = color.cgColor.components else {
-            hexColor.text = "ERROR"
-            return
-        }
-        
-        if components.count != 4 {
-            hexColor.text = "ERROR"
-            return
-        }
-        
-        let redByte = Int((components[0] * 255).rounded())
-        let red = String(format: "%02X", redByte)
-        let greenByte = Int((components[1] * 255).rounded())
-        let green = String(format: "%02X", greenByte)
-        let blueByte = Int((components[2] * 255).rounded())
-        let blue = String(format: "%02X", blueByte)
-        
-        hexColor.text = "#" + red + green + blue
         contentWrapper.backgroundColor = color
+        
+        if let hexString = color.toHexString() {
+            hexColor.text = hexString
+        } else {
+            hexColor.text = "ERROR"
+        }
     }
     
     override func awakeFromNib() {

@@ -58,7 +58,7 @@ class FileNotebookBadMem {
     }
     
     func save() throws {
-        guard let filePath = FileNotebook.filePath else {
+        guard let filePath = FileNotebookBadMem.filePath else {
             DDLogError("Failed to get path for saving")
             
             return
@@ -78,7 +78,7 @@ class FileNotebookBadMem {
     }
     
     func load() throws {
-        guard let filePath = FileNotebook.filePath else {
+        guard let filePath = FileNotebookBadMem.filePath else {
             DDLogError("Failed to get path for loading")
             
             return

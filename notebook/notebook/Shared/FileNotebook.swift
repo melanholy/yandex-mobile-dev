@@ -14,7 +14,7 @@ class FileNotebook {
     
     private(set) var notes = [String: Note]()
     
-    static var filePath: String? {
+    private static var filePath: String? {
         guard let dir = NSSearchPathForDirectoriesInDomains(
             .documentDirectory,
             .allDomainsMask,
@@ -32,7 +32,7 @@ class FileNotebook {
     }
     
     @discardableResult
-    func add(_ note: Note) -> Bool {
+    public func add(_ note: Note) -> Bool {
         if notes[note.uid] != nil {
             DDLogInfo("Failed to add new note: note with uid=\(note.uid) already exists")
             
@@ -46,7 +46,7 @@ class FileNotebook {
     }
     
     @discardableResult
-    func update(_ note: Note) -> Bool {
+    public func update(_ note: Note) -> Bool {
         if notes[note.uid] == nil {
             DDLogInfo("Failed to update note: note with uid=\(note.uid) doesn't exists")
             
@@ -60,7 +60,7 @@ class FileNotebook {
     }
     
     @discardableResult
-    func removeNote(withUid uid: String) -> Bool {
+    public func removeNote(withUid uid: String) -> Bool {
         if notes[uid] == nil {
             DDLogInfo("Failed to remove note: note with uid=\(uid) doesn't exists")
             
@@ -73,7 +73,7 @@ class FileNotebook {
         return true
     }
     
-    func save() throws {
+    public func save() throws {
         guard let filePath = FileNotebook.filePath else {
             DDLogError("Failed to get path for saving")
             
@@ -93,7 +93,7 @@ class FileNotebook {
         DDLogInfo("Saved \(notes.count) notes")
     }
     
-    func load() throws {
+    public func load() throws {
         guard let filePath = FileNotebook.filePath else {
             DDLogError("Failed to get path for loading")
             
@@ -103,14 +103,14 @@ class FileNotebook {
         let content = try String(contentsOfFile: filePath)
         guard let data = content.data(using: .utf8),
               let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
-                DDLogError("Failed to decode notes from \(filePath)")
-                
-                return
+            DDLogError("Failed to decode notes from \(filePath)")
+            
+            return
         }
         
         var loadedNotes = [String: Note]()
-        for obj in jsonArray {
-            let note = Note.parse(json: obj)
+        for item in jsonArray {
+            let note = Note.parse(json: item)
             if let note = note {
                 loadedNotes[note.uid] = note
             }
@@ -119,5 +119,12 @@ class FileNotebook {
         notes = loadedNotes
         
         DDLogInfo("Loaded \(notes.count) notes")
+    }
+    
+    public func replace(notes: [Note]) {
+        self.notes = [String: Note]()
+        for note in notes {
+            self.notes[note.uid] = note
+        }
     }
 }

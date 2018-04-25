@@ -9,25 +9,7 @@
 import UIKit
 import CocoaLumberjack
 
-struct RGBAFloat {
-    private var r: Float
-    private var g: Float
-    private var b: Float
-    private var a: Float
-    
-    init(red: Float, green: Float, blue: Float, alpha: Float) {
-        r = red
-        g = green
-        b = blue
-        a = alpha
-    }
-    
-    static let bitsPerComponent = 32
-    static let bitmapInfo = CGImageAlphaInfo.noneSkipLast.rawValue | CGBitmapInfo.floatComponents.rawValue
-    static func bytesPerRow(width: Int) -> Int{
-        return width * MemoryLayout<RGBAFloat>.size
-    }
-}
+private let apiHost = "http://notes.mrdekk.ru"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var coreDataManager: CoreDataManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
-        //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
         DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
         
         let fileLogger: DDFileLogger = DDFileLogger()
@@ -53,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        guard let host = URL(string: "http://notes.mrdekk.ru") else {
+        guard let host = URL(string: apiHost) else {
             return false
         }
         
@@ -63,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let token = (components.queryItems?.first { $0.name == "access_token" })?.value else {
             return false
         }
+        
+        DDLogInfo("Successfully authorized with OAuth-token")
         
         let dispatcher = OperationDispatcher()
         

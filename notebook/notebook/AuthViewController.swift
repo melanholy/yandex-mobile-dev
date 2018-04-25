@@ -11,12 +11,8 @@ import UIKit
 private let appClientId = "40be302e95bb4a84ae22bd4b8aabbc0f"
 
 class AuthViewController: UIViewController {
-    private var webView: UIWebView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        webView = UIWebView(frame: view.frame)
         
         guard let authUrl = URL(string: "https://oauth.yandex.ru/authorize?response_type=token&client_id=\(appClientId)") else {
             dismiss(animated: true, completion: nil)
@@ -25,8 +21,9 @@ class AuthViewController: UIViewController {
         
         var authRequest = URLRequest(url: authUrl)
         authRequest.httpMethod = "POST"
-        webView.loadRequest(authRequest)
         
+        let webView = UIWebView(frame: view.frame)
+        webView.loadRequest(authRequest)
         view.addSubview(webView)
     }
 }

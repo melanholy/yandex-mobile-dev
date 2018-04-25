@@ -111,7 +111,7 @@ class Api {
             callback()
             return
         }
-        DDLogInfo(String(data: noteData, encoding: .utf8)!)
+
         var request = buildRequest(url: url)
         request.httpMethod = exists ? "PUT" : "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")

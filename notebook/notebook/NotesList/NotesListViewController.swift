@@ -42,16 +42,19 @@ class NotesListViewController: UIViewController {
             return
         }
         
+        let noteExists: Bool
         if let cellIndex = cellIndex {
             notes[cellIndex.item] = note
             notesCollectionView.reloadItems(at: [cellIndex])
+            noteExists = true
         } else {
             notes.append(note)
             let index = IndexPath(item: notes.count - 1, section: 0)
             notesCollectionView.insertItems(at: [index])
+            noteExists = false
         }
         
-        notesProvider.saveNote(note, callback: nil)
+        notesProvider.saveNote(note, exists: noteExists, callback: nil)
     }
     
     @objc func doneDidTap(_ sender: Any) {

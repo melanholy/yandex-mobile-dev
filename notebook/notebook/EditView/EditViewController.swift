@@ -126,14 +126,14 @@ class EditViewController: UIViewController {
                 content: content,
                 color: color,
                 importance: note.importance,
-                relevantTo: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
+                destroyDate: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
         } else {
             return Note(
                 title: title,
                 content: content,
                 color: color,
                 importance: Importance.common,
-                relevantTo: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
+                destroyDate: destroyDateSwitch.isOn ? destroyDatePicker.date : nil)
         }
     }
     

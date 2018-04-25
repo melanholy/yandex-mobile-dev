@@ -14,7 +14,7 @@ enum Importance: Int {
     case high
 }
 
-private let whiteColorSerialized = "#ffffff"
+private let whiteColorHex = "#ffffff"
 
 struct Note {
     let uid: String
@@ -29,13 +29,13 @@ struct Note {
          content: String,
          color: UIColor = UIColor.white,
          importance: Importance,
-         relevantTo: Date? = nil) {
+         destroyDate: Date? = nil) {
         self.uid = uid
         self.title = title
         self.content = content
         self.color = color
         self.importance = importance
-        self.destroyDate = relevantTo
+        self.destroyDate = destroyDate
     }
     
     func isRelevant() -> Bool {
@@ -60,7 +60,7 @@ extension Note {
                 result["importance"] = importance.rawValue
             }
             
-            if let hexColor = color.toHexString(), hexColor != whiteColorSerialized {
+            if let hexColor = color.toHexString(), hexColor != whiteColorHex {
                 result["color"] = hexColor
             }
 
@@ -75,9 +75,9 @@ extension Note {
                 return nil
         }
         
-        var relevantTo: Date? = nil
+        var destroyDate: Date? = nil
         if let destroyDateEntry = json["destroy_date"] as? TimeInterval {
-            relevantTo = Date(timeIntervalSince1970: destroyDateEntry)
+            destroyDate = Date(timeIntervalSince1970: destroyDateEntry)
         }
         
         let importanceEntry = json["importance"] as? Int
@@ -107,6 +107,6 @@ extension Note {
             content: content,
             color: color,
             importance: importance,
-            relevantTo: relevantTo)
+            destroyDate: destroyDate)
     }
 }

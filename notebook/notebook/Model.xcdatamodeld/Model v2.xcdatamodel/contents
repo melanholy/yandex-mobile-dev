@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NoteEntity" representedClassName=".NoteEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="color" attributeType="String" syncable="YES"/>
+        <attribute name="color" attributeType="String" minValueString="7" maxValueString="7" syncable="YES"/>
         <attribute name="content" attributeType="String" syncable="YES"/>
         <attribute name="destroyDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="importance" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="importance" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="uid"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="NoteEntity" positionX="-63" positionY="-18" width="128" height="135"/>

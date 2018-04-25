@@ -31,16 +31,14 @@ struct RGBAFloat {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-    var navigation: UINavigationController?
+    private var navigation: UINavigationController?
+    private var coreDataManager: CoreDataManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
         DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
-        
-        let a = UIColor.parseFromHex(string: "#0AffA0")
         
         let fileLogger: DDFileLogger = DDFileLogger()
         fileLogger.rollingFrequency = TimeInterval(60*60*24)
@@ -67,11 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let dispatcher = OperationDispatcher()
-        let asyncFileNotebook = FileNotebook()
+        
         let api = Api(host: host, authToken: token)
-        let noteOperationsFactory = NoteOperationsFactory(fileNotebook: asyncFileNotebook, api: api)
+        let serverOperationsFactory = ApiNoteOperationsFactory(api: api)
+        
+        coreDataManager = CoreDataManager(modelName: "Model")
+        let localOperationsFactory = CoreDataOperationsFactory(coreDataManager: coreDataManager)
+        
         let noteProvider = NoteProvider(
-            noteOperationsFactory: noteOperationsFactory,
+            serverOperationsFactory: serverOperationsFactory,
+            localOperationsFactory: localOperationsFactory,
             operationsDispatcher: dispatcher)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -92,8 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        try? coreDataManager.objectContext.save()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -110,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        try? coreDataManager.objectContext.save()
     }
 }
 

@@ -9,43 +9,61 @@
 import Foundation
 
 class NoteProvider: NoteProviding {
-    private let operationsFactory: NoteOperationsFactory
+    private let serverOperationsFactory: NoteOperationsFactory
+    private let localOperationsFactory: NoteOperationsFactory
     private let operationsDispatcher: OperationDispatcher
     
     init(
-        noteOperationsFactory: NoteOperationsFactory,
+        serverOperationsFactory: NoteOperationsFactory,
+        localOperationsFactory: NoteOperationsFactory,
         operationsDispatcher: OperationDispatcher) {
-        operationsFactory = noteOperationsFactory
+        self.serverOperationsFactory = serverOperationsFactory
+        self.localOperationsFactory = localOperationsFactory
         self.operationsDispatcher = operationsDispatcher
     }
     
     func getAll(callback: @escaping ([String: Note]?) -> Void) {
-        let operation = operationsFactory.buildGetNotesOperation()
-        operation.onSuccess = callback
-        operationsDispatcher.add(operation, withType: .file)
+        let serverOperation = serverOperationsFactory.buildGetNotesOperation()
+        let localOperation = localOperationsFactory.buildGetNotesOperation()
+        serverOperation.addDependency(localOperation)
+        localOperation.onSuccess = callback
+        operationsDispatcher.add(serverOperation, withType: .network)
+        operationsDispatcher.add(localOperation, withType: .file)
     }
     
     func save(callback: (() -> Void)?) {
-        let operation = operationsFactory.buildSaveNotesOperation()
-        operation.onSuccess = callback
-        operationsDispatcher.add(operation, withType: .file)
+        let serverOperation = serverOperationsFactory.buildSaveNotesOperation()
+        let localOperation = localOperationsFactory.buildSaveNotesOperation()
+        serverOperation.addDependency(localOperation)
+        localOperation.onSuccess = callback
+        operationsDispatcher.add(serverOperation, withType: .network)
+        operationsDispatcher.add(localOperation, withType: .file)
     }
     
     func getNote(withUid uid: String, callback: @escaping (Note?) -> Void) {
-        let operation = operationsFactory.buildGetNoteOperation(noteUid: uid)
-        operation.onSuccess = callback
-        operationsDispatcher.add(operation, withType: .file)
+        let serverOperation = serverOperationsFactory.buildGetNoteOperation(noteUid: uid)
+        let localOperation = localOperationsFactory.buildGetNoteOperation(noteUid: uid)
+        serverOperation.addDependency(localOperation)
+        localOperation.onSuccess = callback
+        operationsDispatcher.add(serverOperation, withType: .network)
+        operationsDispatcher.add(localOperation, withType: .file)
     }
     
-    func saveNote(_ note: Note, callback: (() -> Void)?) {
-        let operation = operationsFactory.buildSaveNoteOperation(note: note)
-        operation.onSuccess = callback
-        operationsDispatcher.add(operation, withType: .file)
+    func saveNote(_ note: Note, exists: Bool, callback: (() -> Void)?) {
+        let serverOperation = serverOperationsFactory.buildSaveNoteOperation(note: note, exists: exists)
+        let localOperation = localOperationsFactory.buildSaveNoteOperation(note: note, exists: exists)
+        serverOperation.addDependency(localOperation)
+        localOperation.onSuccess = callback
+        operationsDispatcher.add(serverOperation, withType: .network)
+        operationsDispatcher.add(localOperation, withType: .file)
     }
     
     func removeNote(withUid uid: String, callback: (() -> Void)?) {
-        let operation = operationsFactory.buildRemoveNoteOperation(noteUid: uid)
-        operation.onSuccess = callback
-        operationsDispatcher.add(operation, withType: .file)
+        let serverOperation = serverOperationsFactory.buildRemoveNoteOperation(noteUid: uid)
+        let localOperation = localOperationsFactory.buildRemoveNoteOperation(noteUid: uid)
+        serverOperation.addDependency(localOperation)
+        localOperation.onSuccess = callback
+        operationsDispatcher.add(serverOperation, withType: .network)
+        operationsDispatcher.add(localOperation, withType: .file)
     }
 }

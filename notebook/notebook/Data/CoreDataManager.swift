@@ -12,10 +12,10 @@ import CoreData
 class CoreDataManager {
     private let modelName: String
     
-    private(set) lazy var managedObjectContext: NSManagedObjectContext = {
+    private(set) lazy var objectContext: NSManagedObjectContext = {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
-        
+
         return managedObjectContext
     }()
     
@@ -33,17 +33,19 @@ class CoreDataManager {
         
         let fileManager = FileManager.default
         let storeName = "\(self.modelName).sqlite"
-        
         let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
         let persistentStoreURL = documentsDirectoryURL.appendingPathComponent(storeName)
-        
+        let options = [
+            NSMigratePersistentStoresAutomaticallyOption: true,
+            NSInferMappingModelAutomaticallyOption: false
+        ]
+
         do {
             try persistentStoreCoordinator.addPersistentStore(
                 ofType: NSSQLiteStoreType,
                 configurationName: nil,
                 at: persistentStoreURL,
-                options: nil)
+                options: options)
         } catch {
             fatalError("Couldn't load persistent store")
         }

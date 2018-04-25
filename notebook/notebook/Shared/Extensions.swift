@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 extension UIImage {
     convenience init?(view: UIView, in rect: CGRect) {
@@ -58,5 +59,32 @@ extension UIColor {
             green: CGFloat((value & 0xff00) >> 8) / 255,
             blue: CGFloat(value & 0xff) / 255,
             alpha: 1)
+    }
+}
+
+class InvalidFetchError: LocalizedError {
+    public var errorDescription: String? { return message }
+    
+    private let message: String
+    
+    init(_ message: String) {
+        self.message = message
+    }
+}
+
+extension NSManagedObjectContext {
+    func fetchSingle<T>(_ request: NSFetchRequest<T>) throws -> T {
+        let fetchResult = try fetch(request)
+        guard fetchResult.count == 1 else {
+            throw InvalidFetchError("NSManagedObjectContext didn't returned single element")
+        }
+        
+        return fetchResult[0]
+    }
+    
+    func fetchFirst<T>(_ request: NSFetchRequest<T>) throws -> T? {
+        let fetchResult = try fetch(request)
+        
+        return fetchResult.first
     }
 }

@@ -27,6 +27,8 @@ class Api {
         
         let request = buildRequest(url: url)
         
+        DDLogInfo("Sending \(request.httpMethod ?? "unknown") request to \(url).")
+        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             var result: [Note]? = nil
             defer { callback(result) }
@@ -55,6 +57,8 @@ class Api {
                 }
             }
             result = notes
+            
+            DDLogInfo("Got \(notes.count) notes from server.")
         }.resume()
     }
     
@@ -66,6 +70,8 @@ class Api {
         }
         
         let request = buildRequest(url: url)
+        
+        DDLogInfo("Sending \(request.httpMethod ?? "unknown") request to \(url).")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             var result: Note? = nil
@@ -88,6 +94,8 @@ class Api {
                     return
             }
             result = note
+            
+            DDLogInfo("Got note with uid=\(note.uid) from server.")
         }.resume()
     }
     
@@ -103,11 +111,13 @@ class Api {
             callback()
             return
         }
-        
+        DDLogInfo(String(data: noteData, encoding: .utf8)!)
         var request = buildRequest(url: url)
         request.httpMethod = exists ? "PUT" : "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = noteData
+        
+        DDLogInfo("Sending \(request.httpMethod ?? "unknown") request to \(url).")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             defer { callback() }
@@ -121,6 +131,8 @@ class Api {
             if response.statusCode >= 400 {
                 self.logError(path: path, data: data, response: response)
             }
+            
+            DDLogInfo("Saved note with uid=\(note.uid) to server.")
         }.resume()
     }
     
@@ -134,6 +146,8 @@ class Api {
         var request = buildRequest(url: url)
         request.httpMethod = "DELETE"
         
+        DDLogInfo("Sending \(request.httpMethod ?? "unknown") request to \(url).")
+        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             defer { callback() }
             
@@ -146,6 +160,8 @@ class Api {
             if response.statusCode >= 400 {
                 self.logError(path: path, data: data, response: response)
             }
+            
+            DDLogInfo("Removed note with uid=\(noteUid) from server.")
         }.resume()
     }
     

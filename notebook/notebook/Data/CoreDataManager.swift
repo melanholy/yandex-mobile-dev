@@ -33,7 +33,10 @@ class CoreDataManager {
         
         let fileManager = FileManager.default
         let storeName = "\(self.modelName).sqlite"
-        let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        guard let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Couldn't get local storage directory")
+        }
+        
         let persistentStoreURL = documentsDirectoryURL.appendingPathComponent(storeName)
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,

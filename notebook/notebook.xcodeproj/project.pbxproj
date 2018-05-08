@@ -24,8 +24,6 @@
 		CC3B118720602AC3002900EF /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118520602AC3002900EF /* ColorPickerView.swift */; };
 		CC3B118C20603382002900EF /* CurrentColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3B118B20603382002900EF /* CurrentColor.xib */; };
 		CC3B1190206036F0002900EF /* CurrentColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B118F206036F0002900EF /* CurrentColorView.swift */; };
-		CC41F4D2208CC3D700F8733C /* MappingV1ToV2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CC41F4D1208CC3D700F8733C /* MappingV1ToV2.xcmappingmodel */; };
-		CC41F4D5208CCDA200F8733C /* MappingV2ToV3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CC41F4D4208CCDA200F8733C /* MappingV2ToV3.xcmappingmodel */; };
 		CC41F4E2208CD04C00F8733C /* NoteEntityV3+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41F4E0208CD04C00F8733C /* NoteEntityV3+CoreDataClass.swift */; };
 		CC41F4E3208CD04C00F8733C /* NoteEntityV3+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41F4E1208CD04C00F8733C /* NoteEntityV3+CoreDataProperties.swift */; };
 		CC41F4E5208CD10E00F8733C /* MappingV2ToV3Policy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41F4E4208CD10E00F8733C /* MappingV2ToV3Policy.swift */; };
@@ -42,6 +40,8 @@
 		CC867168207A47CF003D41F4 /* OperationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867167207A47CF003D41F4 /* OperationDispatcher.swift */; };
 		CC86716A207A52BE003D41F4 /* NoteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867169207A52BE003D41F4 /* NoteProvider.swift */; };
 		CC867170207A60EB003D41F4 /* ApiNoteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC86716F207A60EB003D41F4 /* ApiNoteOperations.swift */; };
+		CC9BC524209F544500D311D6 /* MappingV1ToV2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CC9BC523209F544500D311D6 /* MappingV1ToV2.xcmappingmodel */; };
+		CC9BC526209F54C200D311D6 /* MappingV2ToV3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CC9BC525209F54C200D311D6 /* MappingV2ToV3.xcmappingmodel */; };
 		CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */; };
 		CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */; };
 		CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */; };
@@ -90,9 +90,7 @@
 		CC3B118B20603382002900EF /* CurrentColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentColor.xib; sourceTree = "<group>"; };
 		CC3B118F206036F0002900EF /* CurrentColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColorView.swift; sourceTree = "<group>"; };
 		CC41F4D0208CC22F00F8733C /* Model v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.xcdatamodel"; sourceTree = "<group>"; };
-		CC41F4D1208CC3D700F8733C /* MappingV1ToV2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingV1ToV2.xcmappingmodel; sourceTree = "<group>"; };
 		CC41F4D3208CCD2E00F8733C /* Model v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v3.xcdatamodel"; sourceTree = "<group>"; };
-		CC41F4D4208CCDA200F8733C /* MappingV2ToV3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingV2ToV3.xcmappingmodel; sourceTree = "<group>"; };
 		CC41F4E0208CD04C00F8733C /* NoteEntityV3+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoteEntityV3+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CC41F4E1208CD04C00F8733C /* NoteEntityV3+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoteEntityV3+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC41F4E4208CD10E00F8733C /* MappingV2ToV3Policy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingV2ToV3Policy.swift; sourceTree = "<group>"; };
@@ -109,6 +107,8 @@
 		CC867167207A47CF003D41F4 /* OperationDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDispatcher.swift; sourceTree = "<group>"; };
 		CC867169207A52BE003D41F4 /* NoteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProvider.swift; sourceTree = "<group>"; };
 		CC86716F207A60EB003D41F4 /* ApiNoteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiNoteOperations.swift; sourceTree = "<group>"; };
+		CC9BC523209F544500D311D6 /* MappingV1ToV2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingV1ToV2.xcmappingmodel; sourceTree = "<group>"; };
+		CC9BC525209F54C200D311D6 /* MappingV2ToV3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingV2ToV3.xcmappingmodel; sourceTree = "<group>"; };
 		CCC11A7A20668DFA004D2F00 /* PaletteColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorButton.swift; sourceTree = "<group>"; };
 		CCC11A7C2066A5A1004D2F00 /* ColorTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTarget.swift; sourceTree = "<group>"; };
 		CCC11A822066B9F9004D2F00 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -212,15 +212,15 @@
 				CE5BDBC820503CBC001114BB /* Note.swift */,
 				CE5BDBCA20503D07001114BB /* FileNotebook.swift */,
 				CC2E4AD1205FBD0000D26059 /* ColorPalette.swift */,
+				CC025021207B842C00C63A2F /* Extensions.swift */,
 				CC867163207A3B01003D41F4 /* AsyncOperation.swift */,
 				CC867167207A47CF003D41F4 /* OperationDispatcher.swift */,
 				CC867165207A3FC4003D41F4 /* NoteProviding.swift */,
-				CC867169207A52BE003D41F4 /* NoteProvider.swift */,
-				CC86716F207A60EB003D41F4 /* ApiNoteOperations.swift */,
-				CC025021207B842C00C63A2F /* Extensions.swift */,
-				CC79C1AD2083941D00806496 /* Api.swift */,
-				CC46C5BC208B2D2D0098AE1E /* CoreDataOperations.swift */,
 				CC46C5C0208B2E710098AE1E /* NoteOperationsFactory.swift */,
+				CC867169207A52BE003D41F4 /* NoteProvider.swift */,
+				CC79C1AD2083941D00806496 /* Api.swift */,
+				CC86716F207A60EB003D41F4 /* ApiNoteOperations.swift */,
+				CC46C5BC208B2D2D0098AE1E /* CoreDataOperations.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -239,13 +239,13 @@
 			isa = PBXGroup;
 			children = (
 				CC46C595208B22B50098AE1E /* Model.xcdatamodeld */,
-				CC41F4D4208CCDA200F8733C /* MappingV2ToV3.xcmappingmodel */,
-				CC41F4D1208CC3D700F8733C /* MappingV1ToV2.xcmappingmodel */,
 				CC46C5B9208B25810098AE1E /* CoreDataManager.swift */,
 				CC46C5C2208B3DA00098AE1E /* NoteEntity.swift */,
 				CC41F4E0208CD04C00F8733C /* NoteEntityV3+CoreDataClass.swift */,
 				CC41F4E1208CD04C00F8733C /* NoteEntityV3+CoreDataProperties.swift */,
 				CC41F4E4208CD10E00F8733C /* MappingV2ToV3Policy.swift */,
+				CC9BC523209F544500D311D6 /* MappingV1ToV2.xcmappingmodel */,
+				CC9BC525209F54C200D311D6 /* MappingV2ToV3.xcmappingmodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -514,16 +514,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC1A53062054501500B9D1F0 /* LinkedList.swift in Sources */,
-				CC41F4D2208CC3D700F8733C /* MappingV1ToV2.xcmappingmodel in Sources */,
 				CCC11A7B20668DFA004D2F00 /* PaletteColorButton.swift in Sources */,
 				CC38FFB42067D4AE00B73105 /* ColorPickerViewController.swift in Sources */,
 				CC46C597208B22B50098AE1E /* Model.xcdatamodeld in Sources */,
+				CC9BC524209F544500D311D6 /* MappingV1ToV2.xcmappingmodel in Sources */,
 				CC46C5BD208B2D2D0098AE1E /* CoreDataOperations.swift in Sources */,
 				CC867170207A60EB003D41F4 /* ApiNoteOperations.swift in Sources */,
 				CCC11A832066B9F9004D2F00 /* NotesListViewController.swift in Sources */,
 				CC383539205522F900C0639E /* FileNotebookBadCpu.swift in Sources */,
 				CC79C1AA2083778400806496 /* AuthViewController.swift in Sources */,
-				CC41F4D5208CCDA200F8733C /* MappingV2ToV3.xcmappingmodel in Sources */,
 				CE5BDBA92050362A001114BB /* AppDelegate.swift in Sources */,
 				CC41F4E2208CD04C00F8733C /* NoteEntityV3+CoreDataClass.swift in Sources */,
 				CE5BDBCB20503D07001114BB /* FileNotebook.swift in Sources */,
@@ -536,6 +535,7 @@
 				CC3B118720602AC3002900EF /* ColorPickerView.swift in Sources */,
 				CCC11A7D2066A5A1004D2F00 /* ColorTarget.swift in Sources */,
 				CC1A530420544FF000B9D1F0 /* FileNotebookBadMem.swift in Sources */,
+				CC9BC526209F54C200D311D6 /* MappingV2ToV3.xcmappingmodel in Sources */,
 				CC46C5BA208B25810098AE1E /* CoreDataManager.swift in Sources */,
 				CE5BDBC920503CBC001114BB /* Note.swift in Sources */,
 				CC79C1AE2083941D00806496 /* Api.swift in Sources */,
@@ -910,7 +910,7 @@
 				CC41F4D0208CC22F00F8733C /* Model v2.xcdatamodel */,
 				CC46C596208B22B50098AE1E /* Model.xcdatamodel */,
 			);
-			currentVersion = CC46C596208B22B50098AE1E /* Model.xcdatamodel */;
+			currentVersion = CC41F4D3208CCD2E00F8733C /* Model v3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

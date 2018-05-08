@@ -74,6 +74,11 @@ private class CoreDataGetNotesOperation: GetNotesOperation {
             }
             notes = notesDict
             
+            do {
+                try context.save()
+            } catch {
+                DDLogError("Failed to save core data context: \(error)")
+            }
             DDLogInfo("Got \(notesDict.count) notes from local storage.")
         }
     }
@@ -100,6 +105,11 @@ private class CoreDataSaveNotesOperation: SaveNotesOperation {
                 DDLogError("Failed to save CoreDataManager.objectContext: \(error)")
             }
             
+            do {
+                try context.save()
+            } catch {
+                DDLogError("Failed to save core data context: \(error)")
+            }
             DDLogInfo("Saved all notes from memory to local storage.")
         }
     }
@@ -138,6 +148,11 @@ private class CoreDataGetNoteOperation: GetNoteOperation {
             }
             result = note
             
+            do {
+                try context.save()
+            } catch {
+                DDLogError("Failed to save core data context: \(error)")
+            }
             DDLogInfo("Got note with uid=\(self.noteUid) from local storage.")
         }
     }
@@ -170,9 +185,13 @@ private class CoreDataSaveNoteOperation: SaveNoteOperation {
                 DDLogError("Failed to fetch note with uid=\(self.note.uid) from NSManagedContext: \(error)")
                 return
             }
-            
             noteEntity.fill(from: self.note)
             
+            do {
+                try context.save()
+            } catch {
+                DDLogError("Failed to save core data context: \(error)")
+            }
             DDLogInfo("Saved note with uid=\(self.note.uid) to local storage.")
         }
     }
@@ -204,9 +223,13 @@ private class CoreDataRemoveNoteOperation: RemoveNoteOperation {
                 DDLogError("Failed to fetch note with uid=\(self.noteUid) from NSManagedContext: \(error)")
                 return
             }
-            
             context.delete(noteEntity)
             
+            do {
+                try context.save()
+            } catch {
+                DDLogError("Failed to save core data context: \(error)")
+            }
             DDLogInfo("Removed note with uid=\(self.noteUid) from local storage.")
         }
     }

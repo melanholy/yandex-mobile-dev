@@ -9,9 +9,11 @@
 import Foundation
 import CoreData
 import UIKit
+import CocoaLumberjack
 
 class MappingV2ToV3Policy: NSEntityMigrationPolicy {
-    func hexColorToUIColor(_ strColor: String) -> UIColor? {
-        return UIColor.parseFromHex(string: strColor)
+    public func hexColorToUIColor(_ color: String) -> UIColor? {
+        DDLogInfo("sdfsfs")
+        return UIColor.parseFromHex(string: String(color))
     }
 }

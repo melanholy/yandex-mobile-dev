@@ -16,7 +16,7 @@ enum Importance: Int {
 
 private let whiteColorHex = "#ffffff"
 
-struct Note {
+struct Note: Equatable {
     let uid: String
     let title: String
     let content: String
@@ -41,13 +41,22 @@ struct Note {
     func isRelevant() -> Bool {
         return destroyDate == nil ? true : Date() < destroyDate!
     }
+    
+    public static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.uid == rhs.uid
+            && lhs.title == rhs.title
+            && lhs.content == rhs.content
+            && lhs.color == rhs.color
+            && lhs.importance == rhs.importance
+            && lhs.destroyDate == rhs.destroyDate
+    }
 }
 
 extension Note {
     var json: [String: Any] {
         get {
             var result: [String: Any] = [
-                "uid": uid,
+                "uid": uid.lowercased(),
                 "title": title,
                 "content": content
             ]

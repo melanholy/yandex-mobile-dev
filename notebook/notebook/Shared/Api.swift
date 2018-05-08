@@ -63,7 +63,7 @@ class Api {
     }
     
     public func getNote(withUid noteUid: String, callback: @escaping (Note?) -> Void) {
-        let path = "/notes/\(noteUid)"
+        let path = "/notes/\(noteUid.lowercased())"
         guard let url = URL(string: path, relativeTo: host) else {
             callback(nil)
             return
@@ -100,7 +100,7 @@ class Api {
     }
     
     public func save(note: Note, exists: Bool, callback: @escaping () -> Void) {
-        let path = "/notes" + (exists ? "/\(note.uid)" : "")
+        let path = "/notes" + (exists ? "/\(note.uid.lowercased())" : "")
         guard let url = URL(string: path, relativeTo: host) else {
             callback()
             return
@@ -137,7 +137,7 @@ class Api {
     }
     
     public func removeNote(withUid noteUid: String, callback: @escaping () -> Void) {
-        let path = "/notes/\(noteUid)"
+        let path = "/notes/\(noteUid.lowercased())"
         guard let url = URL(string: path, relativeTo: host) else {
             callback()
             return

@@ -28,7 +28,7 @@ class OperationDispatcher {
         fileIoQueue = OperationQueue()
         fileIoQueue.maxConcurrentOperationCount = 5
         
-        uiQueue = OperationQueue()
+        uiQueue = OperationQueue.main
         uiQueue.maxConcurrentOperationCount = 2
         uiQueue.qualityOfService = .userInitiated
         

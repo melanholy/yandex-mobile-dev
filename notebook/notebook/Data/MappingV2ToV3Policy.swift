@@ -13,7 +13,6 @@ import CocoaLumberjack
 
 class MappingV2ToV3Policy: NSEntityMigrationPolicy {
     public func hexColorToUIColor(_ color: String) -> UIColor? {
-        DDLogInfo("sdfsfs")
         return UIColor.parseFromHex(string: String(color))
     }
 }

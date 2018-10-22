@@ -25,8 +25,7 @@ class ColorButton: UIButton {
             return
         }
         
-        if (isSelectedColor)
-        {
+        if (isSelectedColor) {
             let circleCenterX = Int(bounds.size.width - 15)
             let circleCenterY = 15
             ctx.setStrokeColor(UIColor.black.cgColor)

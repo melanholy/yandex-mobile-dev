@@ -611,12 +611,15 @@
 			baseConfigurationReference = 3B3993D0812BA6BA63AAAEC0 /* Pods-notebook.testflight.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestFlight;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.notebook;
+				PRODUCT_BUNDLE_IDENTIFIER = test.noteboo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -760,12 +763,15 @@
 			baseConfigurationReference = 386050272A5CA810D2E8E4AE /* Pods-notebook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.notebook;
+				PRODUCT_BUNDLE_IDENTIFIER = test.noteboo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -776,12 +782,15 @@
 			baseConfigurationReference = D256ADA1061CAF7BC63B9C13 /* Pods-notebook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWVRLC8GYN;
 				INFOPLIST_FILE = notebook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.notebook;
+				PRODUCT_BUNDLE_IDENTIFIER = test.noteboo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -870,7 +879,7 @@
 				CC41F4D0208CC22F00F8733C /* Model v2.xcdatamodel */,
 				CC46C596208B22B50098AE1E /* Model.xcdatamodel */,
 			);
-			currentVersion = CC41F4D3208CCD2E00F8733C /* Model v3.xcdatamodel */;
+			currentVersion = CC46C596208B22B50098AE1E /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
